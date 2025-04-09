@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MusicBands>
+    <MusicBand>
+        <id>1</id>
+        <name>Bombardiro</name>
+        <coordinates>3_4</coordinates>
+        <creationDate>1744129937309</creationDate>
+        <NumberOfParticipants>12</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>null</label>
+    </MusicBand>
+    <MusicBand>
+        <id>2</id>
+        <name>Tralallero</name>
+        <coordinates>3_4</coordinates>
+        <creationDate>1744129937309</creationDate>
+        <NumberOfParticipants>2</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>null</label>
+    </MusicBand>
+    <MusicBand>
+        <id>3</id>
+        <name>Bombini</name>
+        <coordinates>3_4</coordinates>
+        <creationDate>1744129937309</creationDate>
+        <NumberOfParticipants>6</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>null</label>
+    </MusicBand>
+</MusicBands>
