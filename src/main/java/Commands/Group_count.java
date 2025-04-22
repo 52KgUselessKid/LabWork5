@@ -11,8 +11,8 @@ public class Group_count extends Command {
 
     public Group_count()
     {
-        this.name = "group_count";
-        this.description = "сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе";
+        name = "group_count";
+        description = "сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе";
         cllOnly = true;
     }
     @Override

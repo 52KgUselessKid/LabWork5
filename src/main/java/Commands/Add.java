@@ -7,8 +7,8 @@ public class Add extends Command {
 
     public Add()
     {
-        this.name = "add";
-        this.description = "добавить новый элемент в коллекцию";
+        name = "add";
+        description = "добавить новый элемент в коллекцию";
         cllOnly = true;
     }
 

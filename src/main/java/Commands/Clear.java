@@ -7,8 +7,8 @@ public class Clear extends Command {
 
     public Clear()
     {
-        this.name = "clear";
-        this.description = "очистить коллекцию";
+        name = "clear";
+        description = "очистить коллекцию";
         cllOnly = true;
     }
     @Override

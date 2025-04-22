@@ -11,8 +11,8 @@ public class Print_numOfParts extends Command {
 
     public Print_numOfParts()
     {
-        this.name = "print_numparts";
-        this.description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания";
+        name = "print_numparts";
+        description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания";
         cllOnly = true;
     }
     @Override

@@ -7,8 +7,8 @@ public class AddPro extends Command {
 
     public AddPro()
     {
-        this.name = "addpro";
-        this.description = "добавить новый элемент в коллекцию (Как нормальные люди)";
+        name = "addpro";
+        description = "добавить новый элемент в коллекцию (Как нормальные люди)";
     }
 
     @Override

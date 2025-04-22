@@ -12,8 +12,8 @@ public class Save extends Command {
 
     public Save()
     {
-        this.name = "save";
-        this.description = "сохранить коллекцию в файл";
+        name = "save";
+        description = "сохранить коллекцию в файл";
     }
 
     @Override

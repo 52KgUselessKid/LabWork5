@@ -1,23 +1,30 @@
 package Commands;
 
 import Classes.Command;
+import Enums.Cmnds;
+import Exceptions.InvalidCommandException;
 import Managers.CommandManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Help extends Command {
 
-    public  Help()
-    {
-        this.name = "help";
-        this.description = "вывести справку по доступным командам";
+    public Help() {
+        name = "help";
+        description = "вывести справку по доступным командам";
         isSingle = true;
     }
 
     @Override
     public void execute() {
-        String[] commands = new String[]{"help", "info", "show", "add", "addpro", "update", "updatepro","remove", "clear", "save", "execute", "exit", "head", "remove_head", "remove_lower", "group_count", "filter", "print_numparts"};         //"help, info" ahahah stupid nigger
-        for(String commandName: commands){
-            Command command = CommandManager.getCommand(commandName);
-            System.out.println(command.getDescription());
+
+        String[] mm = new String[]{"help", "add"};
+
+
+            System.out.println(CommandManager.getCommand("help").getName());
+
+
         }
     }
-}

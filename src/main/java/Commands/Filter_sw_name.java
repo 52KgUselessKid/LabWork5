@@ -8,8 +8,8 @@ public class Filter_sw_name extends Command {
 
     public Filter_sw_name()
     {
-        this.name = "filter";
-        this.description = "вывести элементы, значение поля name которых начинается с заданной подстроки";
+        name = "filter";
+        description = "вывести элементы, значение поля name которых начинается с заданной подстроки";
     }
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {

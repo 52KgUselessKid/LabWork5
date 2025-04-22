@@ -16,8 +16,8 @@ public class UpdatePro extends Command {
 
     public UpdatePro()
     {
-        this.name = "updatepro";
-        this.description = "обновить значение элемента коллекции, id которого равен заданному (Как нормальные люди)";
+        name = "updatepro";
+        description = "обновить значение элемента коллекции, id которого равен заданному (Как нормальные люди)";
     }
 
     @Override

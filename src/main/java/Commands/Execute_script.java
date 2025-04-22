@@ -12,8 +12,8 @@ public class Execute_script extends Command {
 
     public Execute_script()
     {
-        this.name = "execute";
-        this.description = "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме";
+        name = "execute";
+        description = "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме";
     }
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {

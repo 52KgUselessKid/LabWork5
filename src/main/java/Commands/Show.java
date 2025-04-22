@@ -8,8 +8,8 @@ public class Show extends Command {
 
     public Show()
     {
-        this.name = "show";
-        this.description = "вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
+        name = "show";
+        description = "вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
         cllOnly = true;
     }
 

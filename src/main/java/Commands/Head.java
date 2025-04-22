@@ -6,8 +6,8 @@ import Managers.CollectionManager;
 public class Head extends Command {
     public Head()
     {
-        this.name = "head";
-        this.description = "вывести первый элемент коллекции";
+        name = "head";
+        description = "вывести первый элемент коллекции";
         cllOnly = true;
     }
 

@@ -53,7 +53,7 @@ public class MusicBand implements Comparable<MusicBand> {
 
     public String getGenreName()
     {
-        return genre.toString();
+        return genre.name();
     }
 
     public MusicGenre getGenre()

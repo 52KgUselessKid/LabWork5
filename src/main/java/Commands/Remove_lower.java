@@ -11,8 +11,8 @@ public class Remove_lower extends Command {
 
     public Remove_lower()
     {
-        this.name = "remove_lower";
-        this.description = "удалить из коллекции все элементы, меньшие, чем заданный";
+        name = "remove_lower";
+        description = "удалить из коллекции все элементы, меньшие, чем заданный";
     }
 
     @Override

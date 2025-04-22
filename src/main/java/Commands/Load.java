@@ -12,8 +12,8 @@ public class Load extends Command {
 
     public Load()
     {
-        this.name = "load";
-        this.description = "загрузить коллекцию из файла";
+        name = "load";
+        description = "загрузить коллекцию из файла";
     }
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {

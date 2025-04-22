@@ -7,8 +7,8 @@ public class Remove_head extends Command {
 
     public Remove_head()
     {
-        this.name = "remove_head";
-        this.description = "вывести первый элемент коллекции и удалить его";
+        name = "remove_head";
+        description = "вывести первый элемент коллекции и удалить его";
         cllOnly = true;
     }
     @Override

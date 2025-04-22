@@ -12,8 +12,8 @@ public class Update extends Command {
 
     public Update()
     {
-        this.name = "update";
-        this.description = "обновить значение элемента коллекции, id которого равен заданному";
+        name = "update";
+        description = "обновить значение элемента коллекции, id которого равен заданному";
     }
 
     @Override

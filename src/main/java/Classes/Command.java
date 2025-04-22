@@ -4,7 +4,7 @@ import Interfaces.CCream;
 
 public abstract class Command implements CCream {
 
-    protected String name, description;
+    protected static String name, description;
 
     public boolean isSingle, cllOnly;
 
@@ -17,4 +17,5 @@ public abstract class Command implements CCream {
     public String getDescription() {
         return name + " -- " + description;
     }
+
 }

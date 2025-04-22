@@ -55,46 +55,51 @@ public class CollectionManager {
         System.out.println("Введите координаты:");
         Coordinates coordinates;
         while (true) {
-            int x = Integer.parseInt(input()), y = Integer.parseInt(input());
-            try{ coordinates = new Coordinates(x, y);
+            try {
+                int x = Integer.parseInt(input()), y = Integer.parseInt(input());
+                coordinates = new Coordinates(x, y);
                 break;
             }
-            catch (Exception e)
-            {System.out.println(e.getMessage() + "Введите координаты:");}
+            catch (NumberFormatException e)
+            {
+                System.out.println("Неверно введены координаты");
+            }
         }
         System.out.println("Введите кол-во участников:");
         int numOfPrtns = 0;
         while (numOfPrtns <= 0)
         {
-            numOfPrtns = Integer.parseInt(input());
-            if(numOfPrtns > 0)
-            {
-                break;
+            try {
+                numOfPrtns = Integer.parseInt(input());
             }
-            else
+            catch (NumberFormatException e)
             {
-                System.out.println(">0 крч");
+                System.out.println("неверно введено");
             }
         }
         System.out.println("Введите жанр:");
         String genreName;
         MusicGenre musicGenre = null;
         while (true){
-            genreName = input().toUpperCase();
-            for(MusicGenre mGenre : MusicGenre.values())
-            {
-                if(genreName.equals(mGenre.name()))
-                {
-                    musicGenre = mGenre;
+            try {
+                genreName = input().toUpperCase();
+                for (MusicGenre mGenre : MusicGenre.values()) {
+                    if (genreName.equals(mGenre.name())) {
+                        musicGenre = mGenre;
+                        break;
+                    }
+                }
+                if (musicGenre != null) {
                     break;
                 }
+                else
+                {
+                    System.out.println("Такого жанра нет");
+                }
             }
-            if(musicGenre != null)
+            catch (NullPointerException e)
             {
-                break;
-            }
-            else {
-                System.out.println("Такого жанра нет");
+                System.out.println("Введите жанр жиес");
             }
         }
 

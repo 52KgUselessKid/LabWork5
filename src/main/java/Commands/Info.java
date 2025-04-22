@@ -7,8 +7,8 @@ public class Info extends Command {
 
     public Info()
     {
-        this.name = "info";
-        this.description = "вывести в стандартный поток вывода информацию о коллекции";
+        name = "info";
+        description = "вывести в стандартный поток вывода информацию о коллекции";
         cllOnly = true;
     }
     @Override

@@ -8,8 +8,8 @@ public class Remove extends Command {
 
     public Remove()
     {
-        this.name = "remove";
-        this.description = "удалить элемент из коллекции по его id";
+        name = "remove";
+        description = "удалить элемент из коллекции по его id";
     }
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
