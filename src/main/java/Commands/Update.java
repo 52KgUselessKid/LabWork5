@@ -7,15 +7,19 @@ import Managers.CollectionManager;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
+/** Класс команды Update, наследуется от Command */
 public class Update extends Command {
 
-
+    /** Конструктор присваивает имя и описание */
     public Update()
     {
         name = "update";
         description = "обновить значение элемента коллекции, id которого равен заданному";
     }
 
+    /** Даёт пользователю обновить значение элемента по id
+     * @param collectionManager collectionManager содержащий коллекцию
+     * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
         int mbID = Integer.parseInt(args[1]);

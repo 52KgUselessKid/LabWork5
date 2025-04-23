@@ -4,32 +4,50 @@ import Enums.MusicGenre;
 
 import java.util.Date;
 
+/** Класс, представляющий музыкальную группу */
 public class MusicBand implements Comparable<MusicBand> {
+
+    /** счетчик уникального id */
     static int idCounter = 1;
+
+    /** id группы */
     int id; // > 0
+
+    /** Имя группы */
     String name; // not null
+
+    /** координаты группы */
     Coordinates coordinates; // not null
+
+    /** дата создания */
     Date creationDate; // not null
+
+    /** кол-во участников */
     long numberOfParticipants; // > 0
+
+    /** Жанр */
     MusicGenre genre; // not null
+
+    /** Лейбл */
     Label label; // not null
 
+    /** Конструктор */
     public MusicBand(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
         setStats(name, coordinates, numberOfParticipants, genre, label);
         this.id = idCounter++;
     }
 
+    /** Конструктор */
     public MusicBand(int id, String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
         setStats(name, coordinates, numberOfParticipants, genre, label);
         this.id = id;
-        if(id >= idCounter)
-        {
+        if (id >= idCounter) {
             idCounter = id + 1;
         }
     }
 
-    public void setStats(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label)
-    {
+    /** Сеттер для полей */
+    public void setStats(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
         if (name == null || name.isEmpty()) throw new IllegalArgumentException("name != null or empty");
         if (coordinates == null) throw new IllegalArgumentException("coordinates != null");
         if (numberOfParticipants <= 0) throw new IllegalArgumentException("num of parts > 0");
@@ -41,41 +59,50 @@ public class MusicBand implements Comparable<MusicBand> {
         this.label = label;
     }
 
-    public int getId()
-    {
+    /** Возвращает id
+     * @return id группы */
+    public int getId() {
         return id;
     }
 
-    public long getPartsNum()
-    {
+    /** Возвращает кол-во учасников
+     * @return кол-во учасников */
+    public long getPartsNum() {
         return numberOfParticipants;
     }
 
-    public String getGenreName()
-    {
+    /** Возвращает имя жанра группы
+     * @return имя жанра группы */
+    public String getGenreName() {
         return genre.name();
     }
 
-    public MusicGenre getGenre()
-    {
+    /** Возвращает жанр группы
+     * @return жанр группы */
+    public MusicGenre getGenre() {
         return genre;
     }
 
-    public String getName()
-    {
+    /** Возвращает имя группы
+     * @return имя группы */
+    public String getName() {
         return name;
     }
-    public Coordinates getCoordinates()
-    {
+
+    /** Возвращает координаты группы
+     * @return координаты группы */
+    public Coordinates getCoordinates() {
         return coordinates;
     }
-    public Label getLabel()
-    {
+
+    /** Возвращает имя лейбла группы
+     * @return имя лейбла группы */
+    public Label getLabel() {
         return label;
     }
 
-    public String getXML()
-    {
+    /** Возвращает Xml группы */
+    public String getXML() {
         String xmlBlock = "";
         xmlBlock += "    <MusicBand>\n";
         xmlBlock += "        <id>" + id + "</id>\n";
@@ -89,12 +116,12 @@ public class MusicBand implements Comparable<MusicBand> {
         return xmlBlock;
     }
 
-    public static MusicBand toMBand(String xml)
-    {
+    /** Возвращает новый объект группы из Xml
+     * @param xml xml содержимое */
+    public static MusicBand toMBand(String xml) {
         int id = Integer.parseInt(xml.split("<id>")[1].split("</id>")[0].trim());
         String name = xml.split("<name>")[1].split("</name>")[0].trim();
-        //System.out.println(name);
-        Coordinates coordinates = Coordinates.fromXML(xml.split("<coordinates>")[1].split("</coordinates>")[0].trim());
+        Coordinates coordinates = Coordinates.fromXML(xml);
         long creationDateMillis = Long.parseLong(xml.split("<creationDate>")[1].split("</creationDate>")[0].trim());
         MusicGenre genre = MusicGenre.valueOf(xml.split("<genre>")[1].split("</genre>")[0].trim());
         Label label = Label.fromXML(xml);
@@ -104,16 +131,17 @@ public class MusicBand implements Comparable<MusicBand> {
         return musicBand;
     }
 
-
-    public void SetCDate(long creationDateMillis)
-    {
+    /** Сеттер для даты создания группы
+     * @param creationDateMillis значение даты в мс */
+    public void SetCDate(long creationDateMillis) {
         creationDate = new Date(creationDateMillis);
     }
 
-
+    /** Возвращает строковое представление группы
+     * @return строковое представление группы */
     @Override
     public String toString() {
-        return "MusicBand{" +
+        return "MusicBand:" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", coordinates=" + coordinates +
@@ -124,7 +152,9 @@ public class MusicBand implements Comparable<MusicBand> {
                 '}';
     }
 
-    // Getters and setters, hashCode, equals, toString methods ...
+    /** Сравнивает объекты групп между собой
+     * @param other объект сравниваемой группы
+     * @return положительное число если больше, отрицательное если меньше */
     @Override
     public int compareTo(MusicBand other) {
         return Long.compare(numberOfParticipants, other.getPartsNum());

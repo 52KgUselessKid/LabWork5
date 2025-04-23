@@ -3,7 +3,10 @@ package Commands;
 import Classes.Command;
 import Managers.CollectionManager;
 
+/** Класс команды Head, наследуется от Command */
 public class Head extends Command {
+
+    /** Конструктор присваивает имя, описание и переменную cllOnly*/
     public Head()
     {
         name = "head";
@@ -11,6 +14,8 @@ public class Head extends Command {
         cllOnly = true;
     }
 
+    /** Даёт пользователю вывести первый элемент коллекции
+     * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public void execute(CollectionManager collectionManager) {
         System.out.println(collectionManager.mbCollection.getFirst());

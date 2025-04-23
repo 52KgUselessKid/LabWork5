@@ -1,20 +1,24 @@
 package Commands;
 
 import Classes.Command;
-import Interfaces.CCream;
-import Managers.CollectionManager;
-import Managers.CommandManager;
+import Managers.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/** Класс команды Execute, наследуется от Command */
 public class Execute_script extends Command {
 
+    /** Конструктор присваивает имя и описание */
     public Execute_script()
     {
         name = "execute";
         description = "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме";
     }
+
+    /** Позволяет пользователю выполнить скрипт
+     * @param collectionManager collectionManager содержащий коллекцию
+     * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
 

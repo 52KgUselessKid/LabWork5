@@ -2,7 +2,7 @@
 <MusicBands>
     <MusicBand>
         <id>1</id>
-        <name>Bombardiro</name>
+        <name>Tung tung tung sahur</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>12</NumberOfParticipants>
@@ -11,7 +11,7 @@
     </MusicBand>
     <MusicBand>
         <id>2</id>
-        <name>Tralallero</name>
+        <name>Lirili larila</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>2</NumberOfParticipants>
@@ -20,7 +20,7 @@
     </MusicBand>
     <MusicBand>
         <id>3</id>
-        <name>Bombini</name>
+        <name>Tripi Tropa</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>6</NumberOfParticipants>

@@ -1,30 +1,31 @@
 package Commands;
 
 import Classes.Command;
-import Enums.Cmnds;
-import Exceptions.InvalidCommandException;
 import Managers.CommandManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+/** Класс команды Head, наследуется от Command */
 public class Help extends Command {
 
+    /** Конструктор присваивает имя, описание и переменную isSingle*/
     public Help() {
         name = "help";
         description = "вывести справку по доступным командам";
         isSingle = true;
     }
 
+    /** Выдает пользователю спраку по командам*/
     @Override
     public void execute() {
 
-        String[] mm = new String[]{"help", "add"};
+        String[] cNames = {"add", "addpro", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
+        "load", "print_numparts", "remove", "remove_head", "remove_lower", "save", "show", "update", "updatepro"};
 
 
-            System.out.println(CommandManager.getCommand("help").getName());
-
+            for(String commandName : cNames)
+            {
+                Command command = CommandManager.getCommand(commandName);
+                System.out.println(command.getDescription());
+            }
 
         }
     }

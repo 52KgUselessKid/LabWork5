@@ -8,13 +8,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/** Класс команды Load, наследуется от Command */
 public class Load extends Command {
 
+    /** Конструктор присваивает имя и описание */
     public Load()
     {
         name = "load";
         description = "загрузить коллекцию из файла";
     }
+
+    /** Даёт пользователю загрузить коллекцию из Xml файла
+     * @param collectionManager collectionManager содержащий коллекцию
+     * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
         try (BufferedReader reader = new BufferedReader(new FileReader(args[1]))) {
@@ -25,11 +31,8 @@ public class Load extends Command {
             }
             String xmlContent = xmlBuilder.toString();
             String[] xmlBands = xmlContent.split("<MusicBand>");
-            //System.out.println(xmlBands[xmlBands.length-1]);
             for (int i = 1; i < xmlBands.length; i++) {
                 if (!xmlBands[i].trim().isEmpty()) {
-                    //bandXML += "</MusicBand>"; // Добавляем закрывающий тег
-                    //System.out.println(bandXML);
                     MusicBand musicBand = MusicBand.toMBand(xmlBands[i]);
                     collectionManager.mbCollection.add(musicBand);
                 }

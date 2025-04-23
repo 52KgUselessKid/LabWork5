@@ -11,15 +11,19 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/** Класс команды UpdatePro, наследуется от Command */
 public class UpdatePro extends Command {
 
-
+    /** Конструктор присваивает имя и описание */
     public UpdatePro()
     {
         name = "updatepro";
         description = "обновить значение элемента коллекции, id которого равен заданному (Как нормальные люди)";
     }
 
+    /** Даёт пользователю обновить значение элемента по id
+     * @param collectionManager collectionManager содержащий коллекцию
+     * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
         int mbID = Integer.parseInt(args[1]);
