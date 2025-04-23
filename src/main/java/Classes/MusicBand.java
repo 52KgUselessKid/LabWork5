@@ -127,13 +127,13 @@ public class MusicBand implements Comparable<MusicBand> {
         Label label = Label.fromXML(xml);
         int numberOfParticipants = Integer.parseInt(xml.split("<NumberOfParticipants>")[1].split("</NumberOfParticipants>")[0].trim());
         MusicBand musicBand = new MusicBand(id, name, coordinates, numberOfParticipants, genre, label);
-        musicBand.SetCDate(creationDateMillis);
+        musicBand.setCDate(creationDateMillis);
         return musicBand;
     }
 
     /** Сеттер для даты создания группы
      * @param creationDateMillis значение даты в мс */
-    public void SetCDate(long creationDateMillis) {
+    public void setCDate(long creationDateMillis) {
         creationDate = new Date(creationDateMillis);
     }
 
@@ -153,10 +153,10 @@ public class MusicBand implements Comparable<MusicBand> {
     }
 
     /** Сравнивает объекты групп между собой
-     * @param other объект сравниваемой группы
+     * @param mb объект сравниваемой группы
      * @return положительное число если больше, отрицательное если меньше */
     @Override
-    public int compareTo(MusicBand other) {
-        return Long.compare(numberOfParticipants, other.getPartsNum());
+    public int compareTo(MusicBand mb) {
+        return Long.compare(numberOfParticipants, mb.getPartsNum());
     }
 }

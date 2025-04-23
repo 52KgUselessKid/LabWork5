@@ -11,7 +11,7 @@ import java.util.ArrayDeque;
 import static Managers.CommandManager.input;
 
 /** Класс CollectionManger, содержит коллекциюи методы связанные с ней */
-public class CollectionManager {
+    public class CollectionManager {
 
     /** Коллекция муз групп */
     public ArrayDeque<MusicBand> mbCollection = new ArrayDeque<MusicBand>();
