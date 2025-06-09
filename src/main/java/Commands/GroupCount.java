@@ -8,13 +8,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /** Класс команды Group_count, наследуется от Command */
-public class Group_count extends Command {
+public class GroupCount extends Command {
 
     /** Конструктор присваивает имя, описание и переменную cllOnly*/
-    public Group_count()
+    public GroupCount()
     {
         name = "group_count";
-        description = "сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе";
+        description = "сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе\n";
         cllOnly = true;
     }
 

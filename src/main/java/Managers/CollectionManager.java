@@ -48,7 +48,7 @@ import static Managers.CommandManager.input;
         while (true) {
             name = input();
             if (name == null) {
-                System.out.println("Имя должно быть непустым");
+                System.err.println("Имя должно быть непустым");
             } else {
                 break;
             }
@@ -58,11 +58,14 @@ import static Managers.CommandManager.input;
         Coordinates coordinates;
         while (true) {
             try {
-                int x = Integer.parseInt(input()), y = Integer.parseInt(input());
+                System.out.println("Введите x:");
+                int x = Integer.parseInt(input());
+                System.out.println("Введите y:");
+                int y = Integer.parseInt(input());
                 coordinates = new Coordinates(x, y);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Неверно введены координаты");
+                System.err.println("Неверно введена координата, повторите ввод!");
             }
         }
         System.out.println("Введите кол-во участников:");
@@ -71,7 +74,7 @@ import static Managers.CommandManager.input;
             try {
                 numOfPrtns = Integer.parseInt(input());
             } catch (NumberFormatException e) {
-                System.out.println("неверно введено");
+                System.err.println("неверно введено, введите число!");
             }
         }
         System.out.println("Введите жанр:");
@@ -90,6 +93,10 @@ import static Managers.CommandManager.input;
                     break;
                 } else {
                     System.out.println("Такого жанра нет");
+                    for(MusicGenre genre : MusicGenre.values())
+                    {
+                        System.out.print(genre + ", \n");
+                    }
                 }
             } catch (NullPointerException e) {
                 System.out.println("Введите жанр жиесть");
@@ -104,10 +111,10 @@ import static Managers.CommandManager.input;
     /** Выдает информацию о группе
      * @return информацмя о группе*/
     public String getCollectionInfo() {
-        String output = "Collection " + mbCollection.getClass().getSimpleName();
-        output += " containing " + mbCollection.size() + " of object MusicBands. \n";
-        output += "Collection created on " + dateCreated + ".\n";
-        output += "Collection stored at " + pathToCollection + ".";
+        String output = "Коллекция типа " + mbCollection.getClass().getSimpleName();
+        output += " содержит " + mbCollection.size() + " групп. \n";
+        output += "Дата создания: " + dateCreated + ".\n";
+        output += "Коллекция хранится в " + pathToCollection + ".";
 
         return output;
     }

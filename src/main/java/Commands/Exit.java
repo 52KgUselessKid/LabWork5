@@ -9,7 +9,7 @@ public class Exit extends Command {
     public Exit()
     {
         name = "exit";
-        description = "завершить программу (без сохранения в файл)";
+        description = "завершить программу (без сохранения в файл)\n";
         isSingle = true;
     }
 

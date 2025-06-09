@@ -3,6 +3,8 @@ package Commands;
 import Classes.Command;
 import Managers.CollectionManager;
 
+import java.util.NoSuchElementException;
+
 /** Класс команды Remove_head, наследуется от Command */
 public class Remove_head extends Command {
 
@@ -10,7 +12,7 @@ public class Remove_head extends Command {
     public Remove_head()
     {
         name = "remove_head";
-        description = "вывести первый элемент коллекции и удалить его";
+        description = "вывести первый элемент коллекции и удалить его\n";
         cllOnly = true;
     }
 
@@ -18,8 +20,14 @@ public class Remove_head extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public void execute(CollectionManager collectionManager) {
-        System.out.println(collectionManager.mbCollection.getFirst());
-        collectionManager.mbCollection.removeFirst();
+        try {
+            System.out.println(collectionManager.mbCollection.getFirst());
+            collectionManager.mbCollection.removeFirst();
+        }
+        catch (NoSuchElementException e)
+        {
+            System.out.println("Коллекция пуста!");
+        }
     }
 
 }

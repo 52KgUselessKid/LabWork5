@@ -10,7 +10,8 @@ public class Add extends Command {
     public Add()
     {
         name = "add";
-        description = "добавить новый элемент в коллекцию";
+        description = "добавить новый элемент в коллекцию, \nвыполнение:\nadd -> ввод, и каждое значение" +
+                " вводите построчно, координаты тоже\n";
         cllOnly = true;
     }
 
@@ -20,6 +21,6 @@ public class Add extends Command {
     public void execute(CollectionManager collectionManager) {
         System.out.println("Создать новый MusicBand:\nВведите название:");
         collectionManager.mbCollection.add(CollectionManager.getNewMB());
-        System.out.println("New MusicBand added to collection");
+        System.out.println("Коллекция добавлена!");
     }
 }

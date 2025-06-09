@@ -144,7 +144,7 @@ public class MusicBand implements Comparable<MusicBand> {
         return "MusicBand:" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", coordinates=" + coordinates +
+                ", coordinates=(" + coordinates.x + "," + coordinates.y + ")" +
                 ", creationDate=" + creationDate +
                 ", numberOfParticipants=" + numberOfParticipants +
                 ", genre=" + genre +

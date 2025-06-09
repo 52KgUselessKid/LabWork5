@@ -6,6 +6,6 @@ public class InvalidCommandException extends NullPointerException {
     /** Конструктор присваивает значение сообщению */
     public InvalidCommandException()
     {
-        super("No such a command or line is empty!");
+        super("Нет такой команды или строка пуста!");
     }
 }

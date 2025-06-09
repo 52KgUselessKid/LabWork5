@@ -10,7 +10,7 @@ public class Clear extends Command {
     public Clear()
     {
         name = "clear";
-        description = "очистить коллекцию";
+        description = "очистить коллекцию\n";
         cllOnly = true;
     }
 
@@ -19,5 +19,6 @@ public class Clear extends Command {
     @Override
     public void execute(CollectionManager collectionManager) {
         collectionManager.mbCollection.clear();
+        System.out.println("Коллекция очищена!");
     }
 }

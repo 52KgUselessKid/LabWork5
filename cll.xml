@@ -2,7 +2,7 @@
 <MusicBands>
     <MusicBand>
         <id>1</id>
-        <name>Tung tung tung sahur</name>
+        <name>SigmaBoys</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>12</NumberOfParticipants>
@@ -11,7 +11,7 @@
     </MusicBand>
     <MusicBand>
         <id>2</id>
-        <name>Lirili larila</name>
+        <name>Skibidi</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>2</NumberOfParticipants>
@@ -20,11 +20,11 @@
     </MusicBand>
     <MusicBand>
         <id>3</id>
-        <name>Tripi Tropa</name>
+        <name>ITMO</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>6</NumberOfParticipants>
-        <genre>JAZZ</genre>
+        <genre>POST_PUNK</genre>
         <label>null</label>
     </MusicBand>
 </MusicBands>

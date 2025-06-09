@@ -21,12 +21,16 @@ public class CommandManager {
     {
         this.collectionManager = collectionManager;
         String input;
+
         while (true) {
+
             try {
+
                 input = input();
                 if (input == null) input = "";
 
                 String[] args = input.split(" ");//scanner.nextLine().trim();
+
                 Command command = getCommand(args[0].strip());
 
                 if(command.isSingle) {
@@ -57,15 +61,15 @@ public class CommandManager {
             case "add" -> command = new Add();
             case "addpro" -> command = new AddPro();
             case "clear" -> command = new Clear();
-            case "execute" -> command = new Execute_script();
+            case "execute" -> command = new ExecuteScript();
             case "exit" -> command = new Exit();
-            case "filter" -> command = new Filter_sw_name();
-            case "group_count" -> command = new Group_count();
+            case "filter" -> command = new FilterSwName();
+            case "group_count" -> command = new GroupCount();
             case "head" -> command = new Head();
             case "help" -> command = new Help();
             case "info" -> command = new Info();
             case "load" -> command = new Load();
-            case "print_numparts" -> command = new Print_numOfParts();
+            case "print_numparts" -> command = new PrintNumOfParts();
             case "remove" -> command = new Remove();
             case "remove_head" -> command = new Remove_head();
             case "remove_lower" -> command = new Remove_lower();
@@ -73,6 +77,7 @@ public class CommandManager {
             case "show" -> command = new Show();
             case "update" -> command = new Update();
             case "updatepro" -> command = new UpdatePro();
+            //case "updatefs" -> command = new UpdateFS();
             default -> throw new InvalidCommandException();
         }
 
@@ -83,6 +88,7 @@ public class CommandManager {
      * @return ввод пользователя */
     public static String input()
     {
+        System.out.print("$ ");
         String in = scanner.nextLine();
         if(in.isEmpty())
         {

@@ -9,7 +9,7 @@ public class Help extends Command {
     /** Конструктор присваивает имя, описание и переменную isSingle*/
     public Help() {
         name = "help";
-        description = "вывести справку по доступным командам";
+        description = "вывести справку по доступным командам\n";
         isSingle = true;
     }
 
@@ -20,12 +20,12 @@ public class Help extends Command {
         String[] cNames = {"add", "addpro", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
         "load", "print_numparts", "remove", "remove_head", "remove_lower", "save", "show", "update", "updatepro"};
 
-
+        System.out.println("***************************");
             for(String commandName : cNames)
             {
                 Command command = CommandManager.getCommand(commandName);
                 System.out.println(command.getDescription());
             }
-
+        System.out.println("***************************");
         }
     }

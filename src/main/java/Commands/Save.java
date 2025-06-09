@@ -15,7 +15,9 @@ public class Save extends Command {
     public Save()
     {
         name = "save";
-        description = "сохранить коллекцию в файл";
+        description = "сохранить коллекцию в файл\n" +
+                "выполнение:\n" +
+                "save путь_к_файлу\n";
     }
 
     /** Позволяет пользователю сохранить коллекцию в файл
@@ -23,16 +25,23 @@ public class Save extends Command {
      * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
-        String filename = args[1] + ".xml";
+        try {
+            String filename = args[1];
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
                 writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<MusicBands>\n");
 
                 for (MusicBand musicBand : collectionManager.mbCollection) {
-                   writer.write(musicBand.getXML());
+                    writer.write(musicBand.getXML());
                 }
                 writer.write("</MusicBands>\n");
+                System.out.println("Сохранено!");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Введите путь к файлу!");
+        }
     }
 }

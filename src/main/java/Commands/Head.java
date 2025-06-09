@@ -3,6 +3,8 @@ package Commands;
 import Classes.Command;
 import Managers.CollectionManager;
 
+import java.util.NoSuchElementException;
+
 /** Класс команды Head, наследуется от Command */
 public class Head extends Command {
 
@@ -10,7 +12,7 @@ public class Head extends Command {
     public Head()
     {
         name = "head";
-        description = "вывести первый элемент коллекции";
+        description = "вывести первый элемент коллекции\n";
         cllOnly = true;
     }
 
@@ -18,7 +20,13 @@ public class Head extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public void execute(CollectionManager collectionManager) {
-        System.out.println(collectionManager.mbCollection.getFirst());
+        try {
+            System.out.println(collectionManager.mbCollection.getFirst());
+        }
+        catch (NoSuchElementException e)
+        {
+            System.out.println("Коллекция пуста!");
+        }
     }
 
 

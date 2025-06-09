@@ -13,7 +13,9 @@ public class Remove_lower extends Command {
     public Remove_lower()
     {
         name = "remove_lower";
-        description = "удалить из коллекции все элементы, меньшие, чем заданный";
+        description = "удалить из коллекции все элементы, меньшие, чем заданный\n" +
+                "выполнение:\n" +
+                "remove_lower id_группы\n";
     }
 
     /** Удаляет из коллекции все элементы, меньшие, чем заданный
@@ -21,23 +23,31 @@ public class Remove_lower extends Command {
      * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
+        try {
         int mbID = Integer.parseInt(args[1]);
         MusicBand currentMB = null;
-        for(MusicBand musicBand : collectionManager.mbCollection)
-        {
-            if(musicBand.getId() == mbID)
-            {
-                currentMB = musicBand;
-                Iterator<MusicBand> iterator = collectionManager.mbCollection.iterator();
-                while (iterator.hasNext()) {
-                    MusicBand musicBand1 = iterator.next();
-                    if (currentMB.compareTo(musicBand1) > 0) {
-                        iterator.remove();
+            for (MusicBand musicBand : collectionManager.mbCollection) {
+                if (musicBand.getId() == mbID) {
+                    currentMB = musicBand;
+                    Iterator<MusicBand> iterator = collectionManager.mbCollection.iterator();
+                    while (iterator.hasNext()) {
+                        MusicBand musicBand1 = iterator.next();
+                        if (currentMB.compareTo(musicBand1) > 0) {
+                            iterator.remove();
+                        }
                     }
+                    System.out.println("Удалено!");
+                    break;
                 }
-                break;
+            }
+            if(currentMB == null)
+            {
+                System.out.println("Нет группы с таким id");
             }
         }
-
+        catch(ArrayIndexOutOfBoundsException | NumberFormatException e)
+        {
+            System.out.println("Неверно введён id");
+        }
     }
 }

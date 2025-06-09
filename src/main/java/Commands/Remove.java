@@ -11,7 +11,9 @@ public class Remove extends Command {
     public Remove()
     {
         name = "remove";
-        description = "удалить элемент из коллекции по его id";
+        description = "удалить элемент из коллекции по его id\n" +
+                "выполнение:\n" +
+                "remove id_группы\n";
     }
 
     /** Даёт удалить элемент из коллекции по его id
@@ -19,15 +21,26 @@ public class Remove extends Command {
      * @param args параметры для команды */
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
-        int mbID = Integer.parseInt(args[1]);
-        for(MusicBand musicBand : collectionManager.mbCollection)
-        {
-            if(musicBand.getId() == mbID)
+        try {
+            int mbID = Integer.parseInt(args[1]);
+            MusicBand mb = null;
+            for (MusicBand musicBand : collectionManager.mbCollection) {
+                if (musicBand.getId() == mbID) {
+                    mb = musicBand;
+                    collectionManager.mbCollection.remove(mb);
+                    break;
+                }
+            }
+            if(mb == null)
             {
-                collectionManager.mbCollection.remove(musicBand);
-                break;
+                System.out.println("Нет группы с таким id!");
             }
         }
+        catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
+        {
+            System.out.println("Неверно введен id");
+        }
+
     }
 
 }

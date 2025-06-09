@@ -10,7 +10,8 @@ public class AddPro extends Command {
     public AddPro()
     {
         name = "addpro";
-        description = "добавить новый элемент в коллекцию (Как нормальные люди)";
+        description = "добавить новый элемент в коллекцию (Как нормальные люди), \nвыполнение:\n" +
+                "addpro имя x y кол-во_учатсников жанр лейбл\n";
     }
 
     /** Позволяет пользователю добавить музыкальную группу
@@ -19,6 +20,6 @@ public class AddPro extends Command {
     @Override
     public void execute(CollectionManager collectionManager, String[] args) {
         collectionManager.mbCollection.add(CollectionManager.getNewMB(args));
-        System.out.println("New MusicBand added to collection");
+        System.out.println("Коллекция добавлена!");
     }
 }

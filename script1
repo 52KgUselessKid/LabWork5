@@ -1,0 +1,12 @@
+help
+show
+update 1
+<MusicBand>
+        <name>Scubyyyy</name>
+        <x>5</x>
+        <y>5</y>
+        <NumberOfParticipants>10</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>koko</label>
+</MusicBand>
+show

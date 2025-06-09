@@ -10,7 +10,7 @@ public class Info extends Command {
     public Info()
     {
         name = "info";
-        description = "вывести в стандартный поток вывода информацию о коллекции";
+        description = "вывести в стандартный поток вывода информацию о коллекции\n";
         cllOnly = true;
     }
 

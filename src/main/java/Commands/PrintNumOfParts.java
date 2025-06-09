@@ -8,13 +8,13 @@ import java.util.Comparator;
 import java.util.List;
 
 /** Класс команды Print_numParts, наследуется от Command */
-public class Print_numOfParts extends Command {
+public class PrintNumOfParts extends Command {
 
     /** Конструктор присваивает имя, описание и переменную cllOnly*/
-    public Print_numOfParts()
+    public PrintNumOfParts()
     {
         name = "print_numparts";
-        description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания";
+        description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания\n";
         cllOnly = true;
     }
 
@@ -23,9 +23,9 @@ public class Print_numOfParts extends Command {
     @Override
     public void execute(CollectionManager collectionManager) {
 
-        List<Long> sortedParticipants = collectionManager.mbCollection.stream()
-                .map(MusicBand::getPartsNum)
-                .sorted(Comparator.reverseOrder())
+        List<String> sortedParticipants = collectionManager.mbCollection.stream()
+                .sorted(Comparator.comparing(MusicBand::getPartsNum).reversed())
+                .map(band -> band.getName() + ": " + band.getPartsNum())
                 .toList();
 
         System.out.println(sortedParticipants);
