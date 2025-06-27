@@ -19,13 +19,13 @@ public class Head extends Command {
     /** Даёт пользователю вывести первый элемент коллекции
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager) {
         try {
-            System.out.println(collectionManager.mbCollection.getFirst());
+            return collectionManager.mbCollection.getFirst().toString();
         }
         catch (NoSuchElementException e)
         {
-            System.out.println("Коллекция пуста!");
+            return "Коллекция пуста!";
         }
     }
 

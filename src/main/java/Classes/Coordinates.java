@@ -1,7 +1,9 @@
 package Classes;
 
+import java.io.Serializable;
+
 /** Класс, представляющий координаты */
-public class Coordinates {
+public class Coordinates implements Serializable {
 
     /** Координата x */
     Integer x; // not null

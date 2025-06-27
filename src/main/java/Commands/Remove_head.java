@@ -19,15 +19,15 @@ public class Remove_head extends Command {
     /** Даёт вывести первый элемент коллекции и удалить его
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager) {
         try {
             System.out.println(collectionManager.mbCollection.getFirst());
             collectionManager.mbCollection.removeFirst();
         }
         catch (NoSuchElementException e)
         {
-            System.out.println("Коллекция пуста!");
+            return "Коллекция пуста!";
         }
-    }
+        return "ready";}
 
 }

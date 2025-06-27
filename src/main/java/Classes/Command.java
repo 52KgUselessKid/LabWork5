@@ -2,8 +2,10 @@ package Classes;
 
 import Interfaces.CCream;
 
+import java.io.Serializable;
+
 /** Абстрактный класс, представляющий команду. Реализует интерфейс CCream */
-public abstract class Command implements CCream {
+public abstract class Command implements CCream, Serializable {
 
     /** Имя команды */
     protected static String name;

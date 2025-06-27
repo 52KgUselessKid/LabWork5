@@ -4,6 +4,7 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,14 +22,15 @@ public class GroupCount extends Command {
     /** Сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
-
+    public String execute(CollectionManager collectionManager) {
+        ArrayList<String> output = new ArrayList<>();
         Map<String, Long> countByGenre = collectionManager.mbCollection.stream()
                 .collect(Collectors.groupingBy(MusicBand::getGenreName, Collectors.counting()));
 
 
         countByGenre.forEach((genre, count) -> {
-            System.out.println(genre + ": " + count);
+            output.add(genre + ": " + count);
         });
+        return output.toString();
     }
 }

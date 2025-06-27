@@ -17,8 +17,8 @@ public class Info extends Command {
     /** Даёт пользователю информацию о коллекции
      @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
-        System.out.println(collectionManager.getCollectionInfo());
+    public String execute(CollectionManager collectionManager) {
+        return collectionManager.getCollectionInfo();
     }
 
 }

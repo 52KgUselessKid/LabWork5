@@ -1,10 +1,12 @@
 package Commands;
 
 import Classes.Command;
-import Managers.*;
+import Managers.CollectionManager;
+import Managers.CommandManager;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +29,13 @@ public class ExecuteScript extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
-
+    public String execute(CollectionManager collectionManager, String[] args, Object object) {
+        String output = "";
         try {
-            String filename = args[1];
+            String fileContent = (String) object;
 
-            try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filename));
-                 BufferedReader br = new BufferedReader(new InputStreamReader(bis, StandardCharsets.UTF_8))) {
+            // Теперь можно обработать содержимое файла
+            try (BufferedReader br = new BufferedReader(new StringReader(fileContent))) {
 
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -59,28 +61,29 @@ public class ExecuteScript extends Command {
                             }
                             xml = xmlBuilder.toString();
                             command = new UpdateFS(xml);
-                            command.execute(collectionManager, args1);
+                            output += command.execute(collectionManager, args1) + "\n";
                         }
                         else {
                             if (cList.contains(input)) {
                                 command = CommandManager.getCommand(input);
                                 if (command.isSingle) {
-                                    command.execute();
+                                    output += command.execute() + "\n";
                                 } else if (command.cllOnly) {
-                                    command.execute(collectionManager);
+                                    output += command.execute(collectionManager) + "\n";
                                 } else {
-                                    command.execute(collectionManager, args1);
+                                    output += command.execute(collectionManager, args1) + "\n";
                                 }
                             }
                         }
                 }
             } catch (IOException e) {
-                System.out.println("Нет такого файла!");
+                return "Нет такого файла!";
             }
         }
             catch (ArrayIndexOutOfBoundsException e)
             {
-                System.out.println("Введите путь к файлу!");
+                return  "Введите путь к файлу!";
             }
+    return output;
     }
 }

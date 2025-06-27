@@ -17,8 +17,8 @@ public class Clear extends Command {
     /** Позволяет очистить коллекцию
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager) {
         collectionManager.mbCollection.clear();
-        System.out.println("Коллекция очищена!");
+        return "Коллекция очищена!";
     }
 }

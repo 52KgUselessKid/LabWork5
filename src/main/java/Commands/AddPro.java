@@ -18,8 +18,9 @@ public class AddPro extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         collectionManager.mbCollection.add(CollectionManager.getNewMB(args));
         System.out.println("Коллекция добавлена!");
+    return null;
     }
 }

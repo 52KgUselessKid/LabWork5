@@ -2,10 +2,11 @@ package Classes;
 
 import Enums.MusicGenre;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /** Класс, представляющий музыкальную группу */
-public class MusicBand implements Comparable<MusicBand> {
+public class MusicBand implements Comparable<MusicBand>, Serializable {
 
     /** счетчик уникального id */
     static int idCounter = 1;
@@ -149,7 +150,7 @@ public class MusicBand implements Comparable<MusicBand> {
                 ", numberOfParticipants=" + numberOfParticipants +
                 ", genre=" + genre +
                 ", label=" + label +
-                '}';
+                "}\n";
     }
 
     /** Сравнивает объекты групп между собой

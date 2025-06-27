@@ -18,12 +18,14 @@ public class Show extends Command {
     /** Отображает пользователю все элементы коллекции
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
-       for(MusicBand musicBand : collectionManager.mbCollection)
+    public String execute(CollectionManager collectionManager) {
+       String output = "";
+        for(MusicBand musicBand : collectionManager.mbCollection)
        {
-           System.out.println(musicBand);
+           output += musicBand;
        }
-    }
+
+        return output;}
 
 
 }

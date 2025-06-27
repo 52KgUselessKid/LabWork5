@@ -1,0 +1,233 @@
+Jun 17, 2025 7:45:35 PM Net.Server main
+INFO: Starting single-threaded server on port 1,234
+Jun 17, 2025 7:45:35 PM Net.Server main
+INFO: Server socket created. Waiting for connections...
+Jun 17, 2025 7:45:46 PM Net.Server main
+INFO: New client connected: /127.0.0.1:53999
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:45:49 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54001
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:45:49 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54002
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:45:49 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:47:34 PM Net.Server main
+INFO: Starting single-threaded server on port 1,234
+Jun 17, 2025 7:47:35 PM Net.Server main
+INFO: Server socket created. Waiting for connections...
+Jun 17, 2025 7:47:38 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54016
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:47:40 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54018
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:47:40 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54019
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:47:40 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:53:36 PM Net.Server main
+INFO: Starting single-threaded server on port 1,234
+Jun 17, 2025 7:53:36 PM Net.Server main
+INFO: Server socket created. Waiting for connections...
+Jun 17, 2025 7:53:39 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54031
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:53:41 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54033
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 7:53:41 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54034
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 7:53:41 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 8:10:17 PM Net.Server main
+INFO: Starting single-threaded server on port 1,234
+Jun 17, 2025 8:10:17 PM Net.Server main
+INFO: Server socket created. Waiting for connections...
+Jun 17, 2025 8:10:20 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54230
+Jun 17, 2025 8:10:20 PM Net.Server processClient
+INFO: Streams opened for client communication
+Jun 17, 2025 8:10:20 PM Net.Server processClient
+INFO: Received request: Command=12345, Args={1}
+Jun 17, 2025 8:10:20 PM Net.Server processClient
+INFO: Response sent: 12345000
+Jun 17, 2025 8:10:26 PM Net.Server processClient
+WARNING: Communication error with client
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:971)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2820)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3147)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3157)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1640)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:495)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:453)
+	at Net.Server.processClient(Server.java:83)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 8:10:26 PM Net.Server processClient
+INFO: Client socket closed
+Jun 17, 2025 8:10:26 PM Net.Server main
+INFO: New client connected: /127.0.0.1:54232
+Jun 17, 2025 8:10:26 PM Net.Server processClient
+SEVERE: Error setting up client streams
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:976)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.read(ObjectInputStream.java:2842)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.readFully(ObjectInputStream.java:2858)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.readShort(ObjectInputStream.java:3355)
+	at java.base/java.io.ObjectInputStream.readStreamHeader(ObjectInputStream.java:939)
+	at java.base/java.io.ObjectInputStream.<init>(ObjectInputStream.java:381)
+	at Net.Server.processClient(Server.java:75)
+	at Net.Server.main(Server.java:63)
+
+Jun 17, 2025 8:10:26 PM Net.Server processClient
+INFO: Client socket closed

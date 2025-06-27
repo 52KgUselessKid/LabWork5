@@ -20,7 +20,7 @@ public class Remove extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         try {
             int mbID = Integer.parseInt(args[1]);
             MusicBand mb = null;
@@ -33,14 +33,14 @@ public class Remove extends Command {
             }
             if(mb == null)
             {
-                System.out.println("Нет группы с таким id!");
+                return "Нет группы с таким id!";
             }
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
         {
-            System.out.println("Неверно введен id");
+            return "Неверно введен id";
         }
 
-    }
+        return "deleted";}
 
 }

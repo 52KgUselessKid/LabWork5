@@ -21,13 +21,13 @@ public class PrintNumOfParts extends Command {
     /** Позволяет пользователю вывести numberOfParticipants всех элементов в порядке убывания
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public void execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager) {
 
         List<String> sortedParticipants = collectionManager.mbCollection.stream()
                 .sorted(Comparator.comparing(MusicBand::getPartsNum).reversed())
                 .map(band -> band.getName() + ": " + band.getPartsNum())
                 .toList();
 
-        System.out.println(sortedParticipants);
+        return sortedParticipants.toString();
     }
 }

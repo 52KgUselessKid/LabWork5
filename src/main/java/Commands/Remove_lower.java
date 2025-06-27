@@ -22,7 +22,7 @@ public class Remove_lower extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         try {
         int mbID = Integer.parseInt(args[1]);
         MusicBand currentMB = null;
@@ -36,18 +36,17 @@ public class Remove_lower extends Command {
                             iterator.remove();
                         }
                     }
-                    System.out.println("Удалено!");
-                    break;
+                    return "Удалено!";
                 }
             }
             if(currentMB == null)
             {
-                System.out.println("Нет группы с таким id");
+                return "Нет группы с таким id";
             }
         }
         catch(ArrayIndexOutOfBoundsException | NumberFormatException e)
         {
-            System.out.println("Неверно введён id");
+            return "Неверно введён id";
         }
-    }
+        return "ok";}
 }

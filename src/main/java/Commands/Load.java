@@ -6,7 +6,6 @@ import Managers.CollectionManager;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
 
 /** Класс команды Load, наследуется от Command */
 public class Load extends Command {
@@ -28,7 +27,7 @@ public class Load extends Command {
      * @param args              параметры для команды
      */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
 
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(args[1]))) {
             byte[] buffer = new byte[bis.available()];
@@ -43,8 +42,8 @@ public class Load extends Command {
                 }
             }
 
-            System.out.println("Загружено!");
+            return "Загружено!";
         } catch (Exception e) {
-            System.out.println("Нет такого файла!");}
-        }
+            return "Нет такого файла!";}
+    }
     }

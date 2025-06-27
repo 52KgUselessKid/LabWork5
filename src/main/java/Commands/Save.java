@@ -24,7 +24,7 @@ public class Save extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         try {
             String filename = args[1];
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
@@ -34,14 +34,14 @@ public class Save extends Command {
                     writer.write(musicBand.getXML());
                 }
                 writer.write("</MusicBands>\n");
-                System.out.println("Сохранено!");
+                return "Сохранено!";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Введите путь к файлу!");
+            return "Введите путь к файлу!";
         }
     }
 }

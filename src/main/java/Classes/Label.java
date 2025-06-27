@@ -1,7 +1,9 @@
 package Classes;
 
+import java.io.Serializable;
+
 /** Класс, представляющий лейбл */
-public class Label {
+public class Label implements Serializable {
 
     /** Имя лейбла */
     String name;

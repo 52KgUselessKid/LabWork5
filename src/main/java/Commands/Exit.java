@@ -15,8 +15,11 @@ public class Exit extends Command {
 
     /** Позволяет пользователю завершить программу */
     @Override
-    public void execute() {
-        System.exit(0);
+    public String execute() {
+
+        //System.exit(0);
+        System.out.println("Клиент отключился о сервера 0_0");
+        return "Вы отключились от сервера -_-";
     }
 
 }

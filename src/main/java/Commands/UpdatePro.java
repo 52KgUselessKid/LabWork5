@@ -27,7 +27,7 @@ public class UpdatePro extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         int mbID = Integer.parseInt(args[1]);
         ArrayList<MusicBand> mbList = new ArrayList<>(collectionManager.mbCollection);
         int index = 0;
@@ -58,6 +58,6 @@ public class UpdatePro extends Command {
         String labelName = fixedArgs[6];
         mbList.get(index).setStats(name, new Coordinates(x, y), numOfPrtns, musicGenre, new Label(labelName));
         collectionManager.mbCollection = new ArrayDeque<>(mbList);
-    }
+        return null;}
 
 }

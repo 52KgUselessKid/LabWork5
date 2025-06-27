@@ -28,7 +28,7 @@ public class UpdateFS extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public void execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         try {
             int mbID = Integer.parseInt(args[1]);
             boolean go = false;
@@ -42,7 +42,7 @@ public class UpdateFS extends Command {
             }
             if(!go)
             {
-                throw  new ArrayIndexOutOfBoundsException();
+                throw new ArrayIndexOutOfBoundsException();
             }
             ArrayList<MusicBand> mbList = new ArrayList<>(collectionManager.mbCollection);
             int index = 0;
@@ -62,12 +62,12 @@ public class UpdateFS extends Command {
 
             mbList.set(index, new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel));
             collectionManager.mbCollection = new ArrayDeque<>(mbList);
-            System.out.println("Обновлено!");
+            return "Обновлено!";
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
         {
-            System.out.println("Неверный id!");
+            return "Неверный id!";
         }
-    }
+        }
 
 }

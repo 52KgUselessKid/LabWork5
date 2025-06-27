@@ -15,17 +15,19 @@ public class Help extends Command {
 
     /** Выдает пользователю спраку по командам*/
     @Override
-    public void execute() {
+    public String execute() {
+        String output = "";
 
         String[] cNames = {"add", "addpro", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
         "load", "print_numparts", "remove", "remove_head", "remove_lower", "save", "show", "update", "updatepro"};
 
-        System.out.println("***************************");
+        output += "***************************";
             for(String commandName : cNames)
             {
                 Command command = CommandManager.getCommand(commandName);
-                System.out.println(command.getDescription());
+                output += command.getDescription();
             }
-        System.out.println("***************************");
-        }
+        output += "***************************";
+    return output;
+    }
     }
