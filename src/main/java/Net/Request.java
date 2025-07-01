@@ -1,6 +1,7 @@
 package Net;
 
 import Classes.Command;
+import Exceptions.InvalidCommandException;
 
 import java.io.Serializable;
 
@@ -16,13 +17,25 @@ public class Request implements Serializable {
     public Request(String content)
     {
         args = content.split(" ");
-        command = getCommand(args[0].strip());
+        try {
+            command = getCommand(args[0].strip());
+        }
+        catch (InvalidCommandException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     public Request(String content, Object object)
     {
         args = content.split(" ");
-        command = getCommand(args[0].strip());
+        try {
+            command = getCommand(args[0].strip());
+        }
+        catch (InvalidCommandException e)
+        {
+            System.out.println(e.getMessage());
+        }
         input = object;
     }
 

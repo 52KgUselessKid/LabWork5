@@ -44,6 +44,7 @@ import static Managers.CommandManager.input;
     /** Возвращает новый объект муз группы, каждое значение пользователь вводит отдельно
      * @return новая музыкаьлная группа */
     public static MusicBand getNewMB() {
+        System.out.println("Введите название:");
         String name;
         while (true) {
             name = input();

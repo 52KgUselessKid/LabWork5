@@ -231,3 +231,362 @@ java.net.SocketException: Connection reset
 
 Jun 17, 2025 8:10:26 PM Net.Server processClient
 INFO: Client socket closed
+Jun 29, 2025 11:13:00 AM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 11:13:00 AM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 11:13:00 AM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 11:14:00 AM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 11:14:00 AM Net.Server main
+FINE: Инициализация сервера...
+Jun 29, 2025 11:14:00 AM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 11:26:50 AM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 11:26:50 AM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 11:26:50 AM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 11:26:50 AM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 11:26:50 AM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 11:26:56 AM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 11:27:07 AM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 11:27:07 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:27:07 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:27:07 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:32:43 AM Net.Server main
+INFO: Получен запрос:[head]
+Jun 29, 2025 11:32:43 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:32:43 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:32:43 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:34:42 AM Net.Server main
+INFO: Получен запрос:[exit]
+Jun 29, 2025 11:34:42 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:34:42 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:34:42 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:35:02 AM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 11:38:52 AM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 11:38:52 AM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 11:38:52 AM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 11:38:52 AM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 11:38:52 AM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 11:39:00 AM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 11:39:04 AM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 11:39:04 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:39:04 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:39:04 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:39:09 AM Net.Server main
+INFO: Получен запрос:[exit]
+Jun 29, 2025 11:39:09 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:39:09 AM Commands.Exit execute
+INFO: Клиент отключился о сервера 0_0
+Jun 29, 2025 11:39:09 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:39:09 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:40:57 AM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 11:41:29 AM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 11:41:29 AM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 11:41:29 AM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 11:41:29 AM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 11:41:29 AM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 11:41:36 AM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 11:41:46 AM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 11:41:46 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:41:46 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:41:46 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:41:49 AM Net.Server main
+INFO: Получен запрос:[exit]
+Jun 29, 2025 11:41:49 AM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 11:41:49 AM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 11:41:49 AM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 11:41:49 AM Net.Server main
+INFO: Клиент отключился о сервера 0_0
+Jun 29, 2025 11:42:20 AM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 12:04:20 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 12:04:20 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 12:04:20 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 12:04:20 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 12:04:20 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 12:04:40 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 12:07:12 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 12:07:12 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 12:07:12 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 12:07:12 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 12:07:12 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 12:07:22 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 12:07:29 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 12:07:29 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 12:07:29 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 12:07:29 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 12:07:29 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 12:07:34 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 12:13:59 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 12:13:59 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 12:13:59 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 12:13:59 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 12:13:59 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 12:14:03 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 12:14:08 PM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 12:14:08 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 12:14:08 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 12:14:08 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 12:14:38 PM Net.Server main
+INFO: Получен запрос:[update, 2]
+Jun 29, 2025 12:14:38 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 12:14:38 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 12:14:38 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 12:14:42 PM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 12:14:42 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 12:14:42 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 12:14:42 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 12:15:00 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 12:38:58 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 12:38:58 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 12:38:58 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 12:38:58 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 12:38:58 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 12:39:07 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 12:39:23 PM Net.Server main
+INFO: Клиент отключился о сервера 0_0
+Jun 29, 2025 12:41:09 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 2:47:14 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 2:47:14 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 2:47:14 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 2:47:14 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 2:47:14 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 2:47:16 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 2:47:20 PM Net.Server main
+INFO: Получен запрос:[jj]
+Jun 29, 2025 2:47:20 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 2:47:20 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 2:49:10 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 2:49:10 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 2:49:10 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 2:49:10 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 2:49:10 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 2:49:12 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 2:49:23 PM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 2:49:23 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 2:49:23 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 2:49:23 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 2:49:35 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 2:56:25 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 2:56:25 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 2:56:25 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 2:56:26 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 2:56:26 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 2:56:28 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 2:56:37 PM Net.Server main
+INFO: Получен запрос:[show, rhrhr]
+Jun 29, 2025 2:56:37 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 2:56:37 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 2:56:37 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 2:57:08 PM Net.Server main
+INFO: Получен запрос:[update, 7]
+Jun 29, 2025 2:57:08 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 2:57:08 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 2:57:08 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 3:00:58 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 3:01:05 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 3:01:05 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 3:01:05 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 3:01:05 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 3:01:05 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 3:01:07 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 3:01:11 PM Net.Server main
+INFO: Получен запрос:[print]
+Jun 29, 2025 3:01:11 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 3:01:11 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 3:01:11 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 3:02:09 PM Net.Server main
+INFO: Получен запрос:[exit]
+Jun 29, 2025 3:02:09 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 3:02:09 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 3:02:09 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 3:02:09 PM Net.Server main
+INFO: Клиент отключился о сервера 0_0
+Jun 29, 2025 3:05:09 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 3:05:09 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 3:05:09 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 3:05:09 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 3:05:09 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 3:05:12 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+
+Jun 29, 2025 3:05:16 PM Net.Server setupLogger
+CONFIG: Логгер успешно настроен
+Jun 29, 2025 3:05:16 PM Net.Server main
+INFO: Инициализация сервера...
+Jun 29, 2025 3:05:16 PM Net.Server main
+INFO: Загрузка данных коллекции...
+Jun 29, 2025 3:05:16 PM Net.Server main
+INFO: Коллекция загружена!
+Jun 29, 2025 3:05:16 PM Net.Server main
+INFO: Сервер запущен, ожидание подключения...
+Jun 29, 2025 3:05:20 PM Net.Server main
+INFO: Клиент подключен!
+Jun 29, 2025 3:05:56 PM Net.Server main
+INFO: Получен запрос:[add]
+Jun 29, 2025 3:05:56 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 3:05:56 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 3:05:56 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 3:05:59 PM Net.Server main
+INFO: Получен запрос:[show]
+Jun 29, 2025 3:05:59 PM Net.Server getResult
+INFO: Выполнение запроса...
+Jun 29, 2025 3:05:59 PM Net.Server getResult
+INFO: Запрос выполнен!
+Jun 29, 2025 3:05:59 PM Net.Server main
+INFO: Ответ клиенту отправлен!
+Jun 29, 2025 3:06:10 PM Net.Server lambda$main$0
+INFO: Сервер отключен
+

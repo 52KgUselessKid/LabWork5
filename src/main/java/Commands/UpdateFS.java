@@ -8,7 +8,7 @@ import Enums.MusicGenre;
 import Managers.CollectionManager;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /** Класс команды Update, наследуется от Command */
 public class UpdateFS extends Command {
@@ -31,28 +31,16 @@ public class UpdateFS extends Command {
     public String execute(CollectionManager collectionManager, String[] args) {
         try {
             int mbID = Integer.parseInt(args[1]);
-            boolean go = false;
-            for(MusicBand mb : collectionManager.mbCollection)
-            {
-                if(mb.getId() == mbID)
-                {
-                    go = true;
-                    break;
-                }
-            }
-            if(!go)
-            {
+
+            // Проверка существования элемента через Stream API
+            boolean exists = collectionManager.mbCollection.stream()
+                    .anyMatch(mb -> mb.getId() == mbID);
+
+            if (!exists) {
                 throw new ArrayIndexOutOfBoundsException();
             }
-            ArrayList<MusicBand> mbList = new ArrayList<>(collectionManager.mbCollection);
-            int index = 0;
-            for (MusicBand musicBand : mbList) {
-                if (musicBand.getId() == mbID) {
-                    index = mbList.indexOf(musicBand);
-                    break;
-                }
-            }
 
+            // Парсинг XML (оставляем без изменений)
             String mbName = xml.split("<name>")[1].split("</name>")[0].trim();
             int mbX = Integer.parseInt(xml.split("<x>")[1].split("</x>")[0].trim());
             long mbY = Long.parseLong(xml.split("<y>")[1].split("</y>")[0].trim());
@@ -60,14 +48,18 @@ public class UpdateFS extends Command {
             MusicGenre genre = MusicGenre.valueOf(xml.split("<genre>")[1].split("</genre>")[0].trim());
             Label mbLabel = new Label(xml.split("<label>")[1].split("</label>")[0].trim());
 
-            mbList.set(index, new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel));
-            collectionManager.mbCollection = new ArrayDeque<>(mbList);
+            // Обновление коллекции через Stream API
+            collectionManager.mbCollection = collectionManager.mbCollection.stream()
+                    .map(mb -> mb.getId() == mbID
+                            ? new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel)
+                            : mb)
+                    .collect(Collectors.toCollection(ArrayDeque::new));
+
             return "Обновлено!";
-        }
-        catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
-        {
+
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return "Неверный id!";
         }
-        }
+    }
 
 }

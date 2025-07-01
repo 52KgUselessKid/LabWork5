@@ -3,6 +3,9 @@ package Commands;
 import Classes.Command;
 import Managers.CollectionManager;
 
+import java.util.ArrayDeque;
+import java.util.stream.Collectors;
+
 /** Класс команды Clear, наследуется от Command */
 public class Clear extends Command {
 
@@ -18,7 +21,9 @@ public class Clear extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager) {
-        collectionManager.mbCollection.clear();
+        collectionManager.mbCollection = collectionManager.mbCollection.stream()
+                .filter(e -> false) // оставляет 0 элементов
+                .collect(Collectors.toCollection(ArrayDeque::new));
         return "Коллекция очищена!";
     }
 }

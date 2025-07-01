@@ -59,7 +59,6 @@ public class CommandManager {
         switch (commandName.toLowerCase())
         {
             case "add" -> command = new Add();
-            case "addpro" -> command = new AddPro();
             case "clear" -> command = new Clear();
             case "execute" -> command = new ExecuteScript();
             case "exit" -> command = new Exit();
@@ -69,14 +68,13 @@ public class CommandManager {
             case "help" -> command = new Help();
             case "info" -> command = new Info();
             case "load" -> command = new Load();
-            case "print_numparts" -> command = new PrintNumOfParts();
+            case "print" -> command = new PrintNumOfParts();
             case "remove" -> command = new Remove();
             case "remove_head" -> command = new Remove_head();
             case "remove_lower" -> command = new Remove_lower();
-            case "save" -> command = new Save();
+            //case "save" -> command = new Save();
             case "show" -> command = new Show();
             case "update" -> command = new Update();
-            case "updatepro" -> command = new UpdatePro();
             //case "updatefs" -> command = new UpdateFS();
             default -> throw new InvalidCommandException();
         }

@@ -3,8 +3,6 @@ package Commands;
 import Classes.Command;
 import Managers.CollectionManager;
 
-import java.util.NoSuchElementException;
-
 /** Класс команды Head, наследуется от Command */
 public class Head extends Command {
 
@@ -20,13 +18,21 @@ public class Head extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager) {
-        try {
-            return collectionManager.mbCollection.getFirst().toString();
-        }
-        catch (NoSuchElementException e)
-        {
-            return "Коллекция пуста!";
-        }
+//        return collectionManager.mbCollection.stream()
+//                .findFirst() // Берёт первый элемент (Optional<MusicBand>)
+//                .map(MusicBand::toString) // Преобразует в строку, если элемент есть
+//                .orElse("Коллекция пуста!"); // Возвращает, если коллекция пуста
+
+        return collectionManager.mbCollection.stream()
+                .findFirst()
+                .map(band -> {  // Лямбда-выражение вместо method reference
+                    String bandInfo = band.toString();
+                    return "Первый элемент коллекции: " + bandInfo;
+                })
+                .orElseGet(() -> {  // Лямбда для Supplier в orElseGet
+                    System.out.println("Коллекция пуста, возвращаем сообщение");
+                    return "Коллекция пуста!";
+                });
     }
 
 

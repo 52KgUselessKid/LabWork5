@@ -4,7 +4,6 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,14 +22,16 @@ public class GroupCount extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager) {
-        ArrayList<String> output = new ArrayList<>();
+        Object TreeMap;
         Map<String, Long> countByGenre = collectionManager.mbCollection.stream()
-                .collect(Collectors.groupingBy(MusicBand::getGenreName, Collectors.counting()));
+                .collect(Collectors.groupingBy(
+                        MusicBand::getGenreName,
+                        java.util.TreeMap::new,  // Используем TreeMap для автоматической сортировки по ключу
+                        Collectors.counting()
+                ));
 
-
-        countByGenre.forEach((genre, count) -> {
-            output.add(genre + ": " + count);
-        });
-        return output.toString();
+        return countByGenre.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .collect(Collectors.joining("\n"));
     }
 }

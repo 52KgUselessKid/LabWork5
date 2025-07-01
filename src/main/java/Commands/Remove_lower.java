@@ -4,7 +4,7 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
-import java.util.Iterator;
+import java.util.Optional;
 
 /** Класс команды Remove_lower, наследуется от Command */
 public class Remove_lower extends Command {
@@ -24,29 +24,26 @@ public class Remove_lower extends Command {
     @Override
     public String execute(CollectionManager collectionManager, String[] args) {
         try {
-        int mbID = Integer.parseInt(args[1]);
-        MusicBand currentMB = null;
-            for (MusicBand musicBand : collectionManager.mbCollection) {
-                if (musicBand.getId() == mbID) {
-                    currentMB = musicBand;
-                    Iterator<MusicBand> iterator = collectionManager.mbCollection.iterator();
-                    while (iterator.hasNext()) {
-                        MusicBand musicBand1 = iterator.next();
-                        if (currentMB.compareTo(musicBand1) > 0) {
-                            iterator.remove();
-                        }
-                    }
-                    return "Удалено!";
-                }
-            }
-            if(currentMB == null)
-            {
+            int mbID = Integer.parseInt(args[1]);
+
+            // Находим элемент с заданным ID
+            Optional<MusicBand> currentMBOpt = collectionManager.mbCollection.stream()
+                    .filter(musicBand -> musicBand.getId() == mbID)
+                    .findFirst();
+
+            if (!currentMBOpt.isPresent()) {
                 return "Нет группы с таким id";
             }
-        }
-        catch(ArrayIndexOutOfBoundsException | NumberFormatException e)
-        {
+
+            MusicBand currentMB = currentMBOpt.get();
+
+            // Удаляем элементы, которые меньше текущего
+            collectionManager.mbCollection.removeIf(musicBand ->
+                    currentMB.compareTo(musicBand) > 0);
+
+            return "Удалено!";
+
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return "Неверно введён id";
-        }
-        return "ok";}
+        }}
 }

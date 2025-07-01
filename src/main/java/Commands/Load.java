@@ -6,6 +6,7 @@ import Managers.CollectionManager;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.util.stream.Stream;
 
 /** Класс команды Load, наследуется от Command */
 public class Load extends Command {
@@ -38,11 +39,13 @@ public class Load extends Command {
             for (int i = 1; i < xmlBands.length; i++) {
                 if (!xmlBands[i].trim().isEmpty()) {
                     MusicBand musicBand = MusicBand.toMBand(xmlBands[i]);
-                    collectionManager.mbCollection.add(musicBand);
+                    Stream.of(musicBand)
+                            //.filter(Objects::nonNull)
+                            .forEach(collectionManager.mbCollection::add);
                 }
             }
 
-            return "Загружено!";
+            return "Коллекция загружена!";
         } catch (Exception e) {
             return "Нет такого файла!";}
     }

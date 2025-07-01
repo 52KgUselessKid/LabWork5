@@ -18,8 +18,8 @@ public class Help extends Command {
     public String execute() {
         String output = "";
 
-        String[] cNames = {"add", "addpro", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
-        "load", "print_numparts", "remove", "remove_head", "remove_lower", "save", "show", "update", "updatepro"};
+        String[] cNames = {"add", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
+                "load", "print", "remove", "remove_head", "remove_lower", "show", "update"};
 
         output += "***************************";
             for(String commandName : cNames)

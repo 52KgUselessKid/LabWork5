@@ -4,6 +4,8 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
+import java.util.stream.Stream;
+
 /** Класс команды Add, наследуется от Command */
 public class Add extends Command {
 
@@ -20,8 +22,15 @@ public class Add extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager, MusicBand mb) {
-        //System.out.println("Создать новый MusicBand:\nВведите название:");
-        collectionManager.mbCollection.add(mb);
-        return "v Коллекция добавлена!";
+//        // Используем Stream для добавления (хотя это избыточно для одного элемента)
+//        Stream.of(mb)
+//                //.filter(Objects::nonNull)
+//                .forEach(collectionManager.mbCollection::add);
+
+        return Stream.ofNullable(mb)
+                .peek(band -> collectionManager.mbCollection.add(band))
+                .findFirst()
+                .map(band -> "В коллекцию добавлена группа!")
+                .orElse("Не удалось добавить группу - объект равен null");
     }
 }

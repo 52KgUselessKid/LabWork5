@@ -4,6 +4,9 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 /** Класс команды Show, наследуется от Command */
 public class Show extends Command {
 
@@ -19,13 +22,10 @@ public class Show extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager) {
-       String output = "";
-        for(MusicBand musicBand : collectionManager.mbCollection)
-       {
-           output += musicBand;
-       }
-
-        return output;}
-
+        return collectionManager.mbCollection.stream()
+                .sorted(Comparator.comparing(MusicBand::getName))  // Сортировка по имени
+                .map(MusicBand::toString)
+                .collect(Collectors.joining());  // Объединение в одну строку
+}
 
 }

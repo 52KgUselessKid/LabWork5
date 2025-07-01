@@ -18,7 +18,7 @@ public class Exit extends Command {
     public String execute() {
 
         //System.exit(0);
-        System.out.println("Клиент отключился о сервера 0_0");
+        //Server.logger.info("Клиент отключился о сервера 0_0");
         return "Вы отключились от сервера -_-";
     }
 

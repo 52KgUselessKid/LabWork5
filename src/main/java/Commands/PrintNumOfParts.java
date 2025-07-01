@@ -13,7 +13,7 @@ public class PrintNumOfParts extends Command {
     /** Конструктор присваивает имя, описание и переменную cllOnly*/
     public PrintNumOfParts()
     {
-        name = "print_numparts";
+        name = "print";
         description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания\n";
         cllOnly = true;
     }

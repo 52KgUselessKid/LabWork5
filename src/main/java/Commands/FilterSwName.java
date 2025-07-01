@@ -4,6 +4,9 @@ import Classes.Command;
 import Classes.MusicBand;
 import Managers.CollectionManager;
 
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 /** Класс команды Filter, наследуется от Command */
 public class FilterSwName extends Command {
 
@@ -21,14 +24,11 @@ public class FilterSwName extends Command {
      * @param args параметры для команды */
     @Override
     public String execute(CollectionManager collectionManager, String[] args) {
-        String output = "";
-        for(MusicBand musicBand : collectionManager.mbCollection)
-        {
-            if(musicBand.getName().startsWith(args[1]))
-            {
-                output += musicBand;
-            }
-        }
-        return output;
+        return collectionManager.mbCollection.stream() // Создаём Stream из ArrayDeque
+                .filter(musicBand -> musicBand.getName() != null) // Проверяем, что имя не null
+                .filter(musicBand -> musicBand.getName().startsWith(args[1])) // Фильтруем по началу строки
+                .sorted(Comparator.comparing(MusicBand::getName))  // Сортировка по имени
+                .map(MusicBand::toString) // Преобразуем в строку (или можно оставить сам объект)
+                .collect(Collectors.joining()); // Объединяем в одну строку
     }
 }
