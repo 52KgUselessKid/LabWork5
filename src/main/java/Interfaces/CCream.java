@@ -20,4 +20,5 @@ public interface CCream {
 
     String getDescription();
 
+    int getCommArgCount();
 }

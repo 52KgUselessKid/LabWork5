@@ -19,6 +19,7 @@ public class Load extends Command {
         description = "загрузить коллекцию из файла\n" +
                 "выполнение:\n" +
                 "load путь_к_файлу\n";
+        argCount = 2;
     }
 
     /**

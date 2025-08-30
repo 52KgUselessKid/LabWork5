@@ -18,6 +18,7 @@ public class Update extends Command {
         description = "обновить значение элемента коллекции, id которого равен заданному\n" +
                 "выполнение:\n" +
                 "update id_группы\n";
+        argCount = 2;
     }
 
     /** Даёт пользователю обновить значение элемента по id
@@ -28,7 +29,6 @@ public class Update extends Command {
         try {
             int mbID = Integer.parseInt(args[1]);
 
-            // Проверка существования элемента с заданным ID
             boolean exists = collectionManager.mbCollection.stream()
                     .anyMatch(mb -> mb.getId() == mbID);
 
@@ -36,7 +36,6 @@ public class Update extends Command {
                 throw new ArrayIndexOutOfBoundsException();
             }
 
-            // Создаем новый список с обновленным элементом
             List<MusicBand> updatedList = collectionManager.mbCollection.stream()
                     .map(musicBand -> {
                         if (musicBand.getId() == mbID) {

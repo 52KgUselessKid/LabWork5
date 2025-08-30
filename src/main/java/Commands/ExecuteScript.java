@@ -23,6 +23,7 @@ public class ExecuteScript extends Command {
         name = "execute";
         description = "считать и исполнить скрипт из указанного файла\nвыполнение:\n" +
                 "execute путь_к_скрипту\n";
+        argCount = 2;
     }
 
     /** Позволяет пользователю выполнить скрипт
@@ -43,7 +44,7 @@ public class ExecuteScript extends Command {
                         String input = line.trim();
                         String[] args1 = input.split(" ");
 
-                        Command command = null;
+                        Command command;
 
                         if (input.split(" ")[0].equals("update")) {
                             String xml;

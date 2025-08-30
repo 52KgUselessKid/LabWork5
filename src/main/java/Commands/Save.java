@@ -18,6 +18,7 @@ public class Save extends Command {
         description = "сохранить коллекцию в файл\n" +
                 "выполнение:\n" +
                 "save путь_к_файлу\n";
+        argCount = 2;
     }
 
     /** Позволяет пользователю сохранить коллекцию в файл

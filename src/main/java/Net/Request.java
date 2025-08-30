@@ -12,7 +12,6 @@ public class Request implements Serializable {
     Command command;
     String[] args;
     Object input;
-    //boolean isHeavy;
 
     public Request(String content)
     {

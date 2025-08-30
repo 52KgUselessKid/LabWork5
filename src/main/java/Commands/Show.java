@@ -16,6 +16,7 @@ public class Show extends Command {
         name = "show";
         description = "вывести в стандартный поток вывода все элементы коллекции в строковом представлении\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Отображает пользователю все элементы коллекции

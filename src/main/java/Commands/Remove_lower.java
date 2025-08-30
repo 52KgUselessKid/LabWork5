@@ -16,6 +16,7 @@ public class Remove_lower extends Command {
         description = "удалить из коллекции все элементы, меньшие, чем заданный\n" +
                 "выполнение:\n" +
                 "remove_lower id_группы\n";
+        argCount = 2;
     }
 
     /** Удаляет из коллекции все элементы, меньшие, чем заданный
@@ -26,7 +27,6 @@ public class Remove_lower extends Command {
         try {
             int mbID = Integer.parseInt(args[1]);
 
-            // Находим элемент с заданным ID
             Optional<MusicBand> currentMBOpt = collectionManager.mbCollection.stream()
                     .filter(musicBand -> musicBand.getId() == mbID)
                     .findFirst();
@@ -37,7 +37,6 @@ public class Remove_lower extends Command {
 
             MusicBand currentMB = currentMBOpt.get();
 
-            // Удаляем элементы, которые меньше текущего
             collectionManager.mbCollection.removeIf(musicBand ->
                     currentMB.compareTo(musicBand) > 0);
 

@@ -4,13 +4,18 @@ import Classes.MusicBand;
 import Managers.CollectionManager;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.ConnectException;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Client {
     static Scanner scanner = new Scanner(System.in);
@@ -20,6 +25,7 @@ public class Client {
         String host = "localhost";
         int port = 12345;
         int retryCount = 0;
+        String input = null;
 
         while (retryCount < MAX_RETRIES) {
             try (
@@ -53,17 +59,19 @@ public class Client {
                                 retryCount = 0; // сбрасываем счётчик попыток при успешном подключении
                             }
                         } else if (key.isWritable()) {
-                            String input = input();
-                            if ("exit".equalsIgnoreCase(input)) {
-                                System.out.println("Выход из клиента");
-                                channel.close();
-                                selector.close();
-                                return;
+                            input = input();
+
+                            Request request = getRequest(input);
+
+                            if(input.split(" ").length != request.getReqCommand().getCommArgCount())
+                            {
+                                System.out.println("Неверное кол-во аргументов! (нужно " + (request.getReqCommand().getCommArgCount() - 1) + ")");
+                                continue;
                             }
 
                             ByteArrayOutputStream bos = new ByteArrayOutputStream();
                             try (ObjectOutputStream oos = new ObjectOutputStream(bos)) {
-                                oos.writeObject(getRequest(input));
+                                oos.writeObject(request);
                             }
 
                             byte[] bytes = bos.toByteArray();
@@ -133,6 +141,12 @@ public class Client {
                                 channel.register(selector, SelectionKey.OP_WRITE);
                                 readStream.reset();
                                 expectedBytes = -1;
+                            }
+
+                            if ("exit".equalsIgnoreCase(input)) {
+                                channel.close();
+                                selector.close();
+                                return;
                             }
                         }
                     }

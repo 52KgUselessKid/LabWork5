@@ -17,6 +17,7 @@ public class FilterSwName extends Command {
         description = "вывести элементы, значение поля name которых начинается с заданной подстроки\n" +
                 "выполнение:\n" +
                 "filter подстрока\n";
+        argCount = 2;
     }
 
     /** Вывести элементы, значение поля name которых начинается с заданной подстроки
@@ -24,11 +25,11 @@ public class FilterSwName extends Command {
      * @param args параметры для команды */
     @Override
     public String execute(CollectionManager collectionManager, String[] args) {
-        return collectionManager.mbCollection.stream() // Создаём Stream из ArrayDeque
-                .filter(musicBand -> musicBand.getName() != null) // Проверяем, что имя не null
-                .filter(musicBand -> musicBand.getName().startsWith(args[1])) // Фильтруем по началу строки
-                .sorted(Comparator.comparing(MusicBand::getName))  // Сортировка по имени
-                .map(MusicBand::toString) // Преобразуем в строку (или можно оставить сам объект)
-                .collect(Collectors.joining()); // Объединяем в одну строку
+        return collectionManager.mbCollection.stream()
+                .filter(musicBand -> musicBand.getName() != null)
+                .filter(musicBand -> musicBand.getName().startsWith(args[1]))
+                .sorted(Comparator.comparing(MusicBand::getName))
+                .map(MusicBand::toString)
+                .collect(Collectors.joining());
     }
 }

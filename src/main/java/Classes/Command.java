@@ -13,6 +13,8 @@ public abstract class Command implements CCream, Serializable {
     /** Описание команды */
     protected static String description;
 
+    protected static int argCount;
+
     /** Указывает, является ли метод execute() без параметров */
     public boolean isSingle;
 
@@ -32,5 +34,10 @@ public abstract class Command implements CCream, Serializable {
     @Override
     public String getDescription() {
         return name + " -- " + description;
+    }
+
+    @Override
+    public int getCommArgCount() {
+        return argCount;
     }
 }

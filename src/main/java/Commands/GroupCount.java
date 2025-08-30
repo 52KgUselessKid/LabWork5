@@ -16,6 +16,7 @@ public class GroupCount extends Command {
         name = "group_count";
         description = "сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе
@@ -26,7 +27,7 @@ public class GroupCount extends Command {
         Map<String, Long> countByGenre = collectionManager.mbCollection.stream()
                 .collect(Collectors.groupingBy(
                         MusicBand::getGenreName,
-                        java.util.TreeMap::new,  // Используем TreeMap для автоматической сортировки по ключу
+                        java.util.TreeMap::new,
                         Collectors.counting()
                 ));
 

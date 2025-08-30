@@ -15,6 +15,7 @@ public class Clear extends Command {
         name = "clear";
         description = "очистить коллекцию\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Позволяет очистить коллекцию
@@ -22,7 +23,7 @@ public class Clear extends Command {
     @Override
     public String execute(CollectionManager collectionManager) {
         collectionManager.mbCollection = collectionManager.mbCollection.stream()
-                .filter(e -> false) // оставляет 0 элементов
+                .filter(e -> false)
                 .collect(Collectors.toCollection(ArrayDeque::new));
         return "Коллекция очищена!";
     }

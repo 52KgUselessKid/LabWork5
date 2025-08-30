@@ -1,6 +1,7 @@
 package Commands;
 
 import Classes.Command;
+import Net.Server;
 
 /** Класс команды Exit, наследуется от Command */
 public class Exit extends Command {
@@ -11,15 +12,14 @@ public class Exit extends Command {
         name = "exit";
         description = "завершить программу (без сохранения в файл)\n";
         isSingle = true;
+        argCount = 1;
     }
 
     /** Позволяет пользователю завершить программу */
     @Override
     public String execute() {
-
-        //System.exit(0);
-        //Server.logger.info("Клиент отключился о сервера 0_0");
-        return "Вы отключились от сервера -_-";
+        Server.logger.info("Клиент отключился о сервера 0_0");
+        return "Вы отключились от сервера x_x";
     }
 
 }

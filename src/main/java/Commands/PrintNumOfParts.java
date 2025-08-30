@@ -16,6 +16,7 @@ public class PrintNumOfParts extends Command {
         name = "print";
         description = "вывести значения поля numberOfParticipants всех элементов в порядке убывания\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Позволяет пользователю вывести numberOfParticipants всех элементов в порядке убывания

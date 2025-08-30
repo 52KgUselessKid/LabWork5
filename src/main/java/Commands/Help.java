@@ -11,6 +11,7 @@ public class Help extends Command {
         name = "help";
         description = "вывести справку по доступным командам\n";
         isSingle = true;
+        argCount = 1;
     }
 
     /** Выдает пользователю спраку по командам*/

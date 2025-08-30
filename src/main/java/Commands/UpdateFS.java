@@ -22,6 +22,7 @@ public class UpdateFS extends Command {
                 "выполнение:\n" +
                 "update id_группы\n";
         this.xml = xml;
+        argCount = 2;
     }
 
     /** Даёт пользователю обновить значение элемента по id
@@ -32,7 +33,6 @@ public class UpdateFS extends Command {
         try {
             int mbID = Integer.parseInt(args[1]);
 
-            // Проверка существования элемента через Stream API
             boolean exists = collectionManager.mbCollection.stream()
                     .anyMatch(mb -> mb.getId() == mbID);
 
@@ -40,7 +40,6 @@ public class UpdateFS extends Command {
                 throw new ArrayIndexOutOfBoundsException();
             }
 
-            // Парсинг XML (оставляем без изменений)
             String mbName = xml.split("<name>")[1].split("</name>")[0].trim();
             int mbX = Integer.parseInt(xml.split("<x>")[1].split("</x>")[0].trim());
             long mbY = Long.parseLong(xml.split("<y>")[1].split("</y>")[0].trim());
@@ -48,7 +47,6 @@ public class UpdateFS extends Command {
             MusicGenre genre = MusicGenre.valueOf(xml.split("<genre>")[1].split("</genre>")[0].trim());
             Label mbLabel = new Label(xml.split("<label>")[1].split("</label>")[0].trim());
 
-            // Обновление коллекции через Stream API
             collectionManager.mbCollection = collectionManager.mbCollection.stream()
                     .map(mb -> mb.getId() == mbID
                             ? new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel)

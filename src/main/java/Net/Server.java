@@ -2,6 +2,7 @@ package Net;
 
 import Classes.Command;
 import Classes.MusicBand;
+import Commands.Load;
 import Commands.Save;
 import Managers.CollectionManager;
 
@@ -13,13 +14,19 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class Server {
-    public static Logger logger = Logger.getLogger(Server.class.getName());
+    public static Logger logger = Logger.getLogger("logger");
 
     public static void main(String[] args) {
+        logger.info("Инициализация сервера...");
+
         CollectionManager collectionManager = new CollectionManager();
 
+        logger.info("Загрузка данных коллекции...");
+
+        logger.info(new Load().execute(collectionManager, new String[]{null, "cll.xml"}));
+
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            logger.info("Сервер отключен\n" + new Save().execute(collectionManager, new String[]{"", "cll.xml"}));
+            logger.info("Сервер отключен\n" /*+ new Save().execute(collectionManager, new String[]{null, "cll.xml"})*/);
         }));
 
         int port = 12345;
@@ -29,10 +36,9 @@ public class Server {
                 ServerSocket serverSocket = new ServerSocket(port);
                 BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in))
         ) {
-            System.out.println("Сервер запущен на порту " + port);
+            logger.info("Сервер запущен, порт: " + port);
 
             while (running) {
-                // Проверка пользовательского ввода (команда exit)
                 if (consoleReader.ready()) {
                     String line = consoleReader.readLine();
                     if ("save".equalsIgnoreCase(line.trim())) {
@@ -41,22 +47,18 @@ public class Server {
                     }
                 }
 
-                // Проверка наличия клиента (неблокирующая альтернатива serverSocket.accept() отсутствует,
-                // поэтому блокировка возможна. Чтобы обойти — можно использовать serverSocket.setSoTimeout, но это усложняет код.
-                // Мы сохраняем ваш подход — клиент подключается по одному.
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Клиент подключен: " + clientSocket.getInetAddress());
+                logger.info("Клиент подключен: " + clientSocket.getInetAddress());
 
                 try (
                         InputStream in = clientSocket.getInputStream();
                         OutputStream out = clientSocket.getOutputStream()
                 ) {
                     while (running) {
-                        // Проверка ввода с клавиатуры внутри клиентского цикла
                         if (consoleReader.ready()) {
                             String command = consoleReader.readLine();
                             if ("exit".equalsIgnoreCase(command.trim())) {
-                                System.out.println("Завершение работы сервера...");
+                                logger.info("Завершение работы сервера...");
                                 running = false;
                                 break;
                             }
@@ -72,9 +74,12 @@ public class Server {
 
                             ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
                             Request request = (Request) ois.readObject();
-                            System.out.println("Получено: " + Arrays.toString(request.getArgs()));
+                            logger.info("Получен запрос: " + Arrays.toString(request.getArgs()));
 
                             Answer answer = new Answer(getResult(collectionManager, request));
+
+                            logger.info("Запрос выполнен");
+
                             ByteArrayOutputStream bos = new ByteArrayOutputStream();
                             ObjectOutputStream oos = new ObjectOutputStream(bos);
                             oos.writeObject(answer);
@@ -84,12 +89,14 @@ public class Server {
                             out.write(ByteBuffer.allocate(4).putInt(response.length).array());
                             out.write(response);
                             out.flush();
+
+                            logger.info("Ответ отправлен клиенту");
                         }
 
                         Thread.sleep(50); // Чтобы не грузить CPU
                     }
                 } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Клиент отключился.");
+//                    System.out.println("Клиент отключился.");
                 }
 
                 clientSocket.close();
@@ -98,14 +105,20 @@ public class Server {
             e.printStackTrace();
         }
 
-        System.out.println("Сервер завершён.");
+//        System.out.println("Сервер завершён.");
+    }
+
+    static void sendAnswer()
+    {
+
     }
 
     static String getResult(CollectionManager collectionManager, Request received) {
         String[] in_args = received.getArgs();
         Command command = received.getReqCommand();
         String result = null;
-        if(command != null) {
+        if (command != null) {
+            logger.info("Выполнение запроса...");
             if (command.isSingle) {
                 result = command.execute();
             } else if (command.cllOnly) {

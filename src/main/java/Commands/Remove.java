@@ -13,6 +13,7 @@ public class Remove extends Command {
         description = "удалить элемент из коллекции по его id\n" +
                 "выполнение:\n" +
                 "remove id_группы\n";
+        argCount = 2;
     }
 
     /** Даёт удалить элемент из коллекции по его id
@@ -23,7 +24,6 @@ public class Remove extends Command {
         try {
             int mbID = Integer.parseInt(args[1]);
 
-            // Используем Stream API для поиска и удаления элемента
             boolean removed = collectionManager.mbCollection.stream()
                     .filter(musicBand -> musicBand.getId() == mbID)
                     .findFirst()

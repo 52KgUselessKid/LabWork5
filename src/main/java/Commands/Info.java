@@ -12,6 +12,7 @@ public class Info extends Command {
         name = "info";
         description = "вывести в стандартный поток вывода информацию о коллекции\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Даёт пользователю информацию о коллекции

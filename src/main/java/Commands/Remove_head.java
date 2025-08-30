@@ -12,6 +12,7 @@ public class Remove_head extends Command {
         name = "remove_head";
         description = "вывести первый элемент коллекции и удалить его\n";
         cllOnly = true;
+        argCount = 1;
     }
 
     /** Даёт вывести первый элемент коллекции и удалить его
