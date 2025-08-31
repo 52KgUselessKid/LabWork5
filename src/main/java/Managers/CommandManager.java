@@ -29,7 +29,7 @@ public class CommandManager {
                 input = input();
                 if (input == null) input = "";
 
-                String[] args = input.split(" ");//scanner.nextLine().trim();
+                String[] args = input.split(" ");
 
                 Command command = getCommand(args[0].strip());
 
@@ -54,7 +54,7 @@ public class CommandManager {
      * @param commandName имя команды которое ввел пользователь
      * @return новая команда*/
     public static Command getCommand(String commandName){
-        Command command = null;
+        Command command;
 
         switch (commandName.toLowerCase())
         {

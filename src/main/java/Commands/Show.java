@@ -24,9 +24,9 @@ public class Show extends Command {
     @Override
     public String execute(CollectionManager collectionManager) {
         return collectionManager.mbCollection.stream()
-                .sorted(Comparator.comparing(MusicBand::getName))  // Сортировка по имени
+                .sorted(Comparator.comparing(MusicBand::getName))
                 .map(MusicBand::toString)
-                .collect(Collectors.joining());  // Объединение в одну строку
+                .collect(Collectors.joining());
 }
 
 }

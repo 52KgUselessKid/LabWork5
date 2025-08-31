@@ -21,11 +21,11 @@ public class Head extends Command {
     public String execute(CollectionManager collectionManager) {
         return collectionManager.mbCollection.stream()
                 .findFirst()
-                .map(band -> {  // Лямбда-выражение вместо method reference
+                .map(band -> {
                     String bandInfo = band.toString();
                     return "Первый элемент коллекции: " + bandInfo;
                 })
-                .orElseGet(() -> {  // Лямбда для Supplier в orElseGet
+                .orElseGet(() -> {
                     System.out.println("Коллекция пуста, возвращаем сообщение");
                     return "Коллекция пуста!";
                 });

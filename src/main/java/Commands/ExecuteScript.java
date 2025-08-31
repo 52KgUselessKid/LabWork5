@@ -35,7 +35,6 @@ public class ExecuteScript extends Command {
         try {
             String fileContent = (String) object;
 
-            // Теперь можно обработать содержимое файла
             try (BufferedReader br = new BufferedReader(new StringReader(fileContent))) {
 
                 String line;

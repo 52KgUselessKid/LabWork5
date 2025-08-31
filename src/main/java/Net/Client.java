@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class Client {
     static Scanner scanner = new Scanner(System.in);
-    static final int MAX_RETRIES = 3;
+    static final int maxRetCount = 3;
 
     public static void main(String[] args) throws InterruptedException {
         String host = "localhost";
@@ -27,7 +27,7 @@ public class Client {
         int retryCount = 0;
         String input = null;
 
-        while (retryCount < MAX_RETRIES) {
+        while (retryCount < maxRetCount) {
             try (
                     SocketChannel socketChannel = SocketChannel.open();
             ) {
@@ -56,15 +56,14 @@ public class Client {
                             if (channel.finishConnect()) {
                                 System.out.println("Вы подключились к серверу -_-");
                                 channel.register(selector, SelectionKey.OP_WRITE);
-                                retryCount = 0; // сбрасываем счётчик попыток при успешном подключении
+                                retryCount = 0;
                             }
                         } else if (key.isWritable()) {
                             input = input();
 
                             Request request = getRequest(input);
 
-                            if(input.split(" ").length != request.getReqCommand().getCommArgCount())
-                            {
+                            if (input.split(" ").length != request.getReqCommand().getCommArgCount()) {
                                 System.out.println("Неверное кол-во аргументов! (нужно " + (request.getReqCommand().getCommArgCount() - 1) + ")");
                                 continue;
                             }
@@ -134,7 +133,7 @@ public class Client {
                                     if (answer.getContent() != null) {
                                         System.out.println(answer.getContent());
                                     }
-                                    } catch (ClassNotFoundException e) {
+                                } catch (ClassNotFoundException e) {
                                     System.out.println("Ошибка десериализации: " + e.getMessage());
                                 }
 
@@ -154,9 +153,10 @@ public class Client {
 
             } catch (ConnectException e) {
                 retryCount++;
-                System.out.println("Сервер недоступен. Попытка " + retryCount + " из " + MAX_RETRIES);
+                System.out.println("Сервер недоступен. Попытка " + retryCount + " из " + maxRetCount);
                 Thread.sleep(3000);
-            } catch (IOException e) {}
+            } catch (IOException e) {
+            }
         }
 
         System.out.println("Превышено число попыток подключения. Клиент завершает работу.");
@@ -201,7 +201,7 @@ public class Client {
         try {
             return scanner.nextLine();
         } catch (NoSuchElementException e) {
-            return "exit"; // если System.in закрыт — выходим
+            return "exit";
         }
     }
 }
