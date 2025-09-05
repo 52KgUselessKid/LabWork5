@@ -22,7 +22,17 @@ public class Add extends Command {
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
     public String execute(CollectionManager collectionManager, MusicBand mb) {
-        return Stream.ofNullable(mb)
+        int newMBandID = 1;
+        for(MusicBand mBand : collectionManager.mbCollection)
+        {
+            if(mBand.getId() > newMBandID)
+            {
+                newMBandID = mBand.getId();
+            }
+        }
+        newMBandID++;
+        MusicBand mBand = new MusicBand(newMBandID, mb.getName(), mb.getCoordinates(), mb.getPartsNum(), mb.getGenre(), mb.getLabel());
+        return Stream.ofNullable(mBand)
                 .peek(band -> collectionManager.mbCollection.add(band))
                 .findFirst()
                 .map(band -> "В коллекцию добавлена группа!")

@@ -24,10 +24,12 @@ public class Server {
 
         logger.info("Загрузка данных коллекции...");
 
-        logger.info(new Load().execute(collectionManager, new String[]{null, "cll.xml"}));
+        String cllPath = args[0];
+
+        logger.info(new Load().execute(collectionManager, new String[]{null, cllPath}));
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            logger.info("Сервер отключен\n" /*+ new Save().execute(collectionManager, new String[]{null, "cll.xml"})*/);
+            logger.info("Сервер отключен\n" + new Save().execute(collectionManager, new String[]{null, cllPath}));
         }));
 
         int port = 12345;
@@ -40,13 +42,6 @@ public class Server {
             logger.info("Сервер запущен, порт: " + port);
 
             while (running) {
-                if (consoleReader.ready()) {
-                    String line = consoleReader.readLine();
-                    if ("save".equalsIgnoreCase(line.trim())) {
-                        System.out.println(new Save().execute(collectionManager, new String[]{"", "cll.xml"}));
-                        break;
-                    }
-                }
 
                 Socket clientSocket = getClientSocket(serverSocket);
 
@@ -85,7 +80,7 @@ public class Server {
                 clientSocket.close();
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

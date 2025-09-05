@@ -7,6 +7,7 @@ import Enums.MusicGenre;
 
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 
 import static Managers.CommandManager.input;
 
@@ -59,9 +60,9 @@ import static Managers.CommandManager.input;
         Coordinates coordinates;
         while (true) {
             try {
-                System.out.println("Введите x:");
+                System.out.println("Введите x (целое число):");
                 int x = Integer.parseInt(input());
-                System.out.println("Введите y:");
+                System.out.println("Введите y (целое число):");
                 int y = Integer.parseInt(input());
                 coordinates = new Coordinates(x, y);
                 break;
@@ -69,7 +70,7 @@ import static Managers.CommandManager.input;
                 System.err.println("Неверно введена координата, повторите ввод!");
             }
         }
-        System.out.println("Введите кол-во участников:");
+        System.out.println("Введите кол-во участников: (целое число)");
         int numOfPrtns = 0;
         while (numOfPrtns <= 0) {
             try {
@@ -78,7 +79,7 @@ import static Managers.CommandManager.input;
                 System.err.println("неверно введено, введите число!");
             }
         }
-        System.out.println("Введите жанр:");
+        System.out.println("Введите жанр: " + Arrays.toString(MusicGenre.values()));
         String genreName;
         MusicGenre musicGenre = null;
         while (true) {

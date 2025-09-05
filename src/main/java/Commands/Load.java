@@ -48,6 +48,6 @@ public class Load extends Command {
 
             return "Коллекция загружена!";
         } catch (Exception e) {
-            return "Нет такого файла!";}
+            return "Коллекция загружена! Нет такого файла!";}
     }
     }

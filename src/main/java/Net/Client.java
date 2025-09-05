@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class Client {
     static Scanner scanner = new Scanner(System.in);
-    static final int maxRetCount = 3;
+    static final int maxRetCount = 10;
 
     public static void main(String[] args) throws InterruptedException {
         String host = "localhost";
@@ -43,7 +43,7 @@ public class Client {
                 int expectedBytes = -1;
 
                 while (true) {
-                    selector.select(100); // неблокирующее ожидание
+                    selector.select(100);
 
                     Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
                     while (iter.hasNext()) {
@@ -63,8 +63,8 @@ public class Client {
 
                             Request request = getRequest(input);
 
-                            if (input.split(" ").length != request.getReqCommand().getCommArgCount()) {
-                                System.out.println("Неверное кол-во аргументов! (нужно " + (request.getReqCommand().getCommArgCount() - 1) + ")");
+                            if(request == null || request.getReqCommand() == null || !validateRequest(input, request))
+                            {
                                 continue;
                             }
 
@@ -167,16 +167,26 @@ public class Client {
             return null;
         }
 
-        String[] parts = input.split("\\s+");
+        String[] parts = input.strip().split("\\s+");
         if (parts.length == 0) {
             return null;
         }
 
-        String cName = parts[0].toLowerCase();
+        String cName = parts[0].toLowerCase().trim();
+        System.out.println(cName);
         try {
             if (cName.equals("add") || cName.equals("update")) {
-                MusicBand mb = CollectionManager.getNewMB();
-                return mb != null ? new Request(input, mb) : null;
+                Request tempReq = new Request(input);
+                if(validateRequest(input, tempReq)) {
+                    if(cName.equals("update"))///  /////////////////
+                    {}
+                    MusicBand mb = CollectionManager.getNewMB();
+                    return mb != null ? new Request(input, mb) : null;
+                }
+                else
+                {
+                    return null;
+                }
             } else if (cName.equals("execute") && parts.length > 1) {
                 String filePath = parts[1];
                 if (!Files.exists(Paths.get(filePath))) {
@@ -203,5 +213,14 @@ public class Client {
         } catch (NoSuchElementException e) {
             return "exit";
         }
+    }
+
+    static boolean validateRequest(String input, Request request)
+    {
+        if (input.split(" ").length != request.getReqCommand().getCommArgCount()) {
+            System.out.println("Неверное кол-во аргументов! (нужно " + (request.getReqCommand().getCommArgCount() - 1) + ")");
+            return false;
+        }
+        return true;
     }
 }
