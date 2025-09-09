@@ -1,6 +1,7 @@
 package Commands;
 
 import Classes.Command;
+import Classes.MusicBand;
 import Managers.CollectionManager;
 import Managers.CommandManager;
 
@@ -41,11 +42,11 @@ public class ExecuteScript extends Command {
                 while ((line = br.readLine()) != null) {
 
                         String input = line.trim();
-                        String[] args1 = input.split(" ");
+                        String[] args1 = input.strip().split("\\s+");
 
                         Command command;
 
-                        if (input.split(" ")[0].equals("update")) {
+                        if (input.strip().split("\\s+")[0].equals("update") || input.strip().split("\\s+")[0].equals("add")) {
                             String xml;
                             StringBuilder xmlBuilder = new StringBuilder();
                             while ((line = br.readLine()) != null) {
@@ -60,14 +61,22 @@ public class ExecuteScript extends Command {
                                 xmlBuilder.append(line);
                             }
                             xml = xmlBuilder.toString();
-                            command = new UpdateFS(xml);
-                            output += command.execute(collectionManager, args1) + "\n";
+                            if (input.strip().split("\\s+")[0].equals("update"))
+                            {
+                                command = new UpdateFS(xml);
+                                output += command.execute(collectionManager, args1) + "\n";
+                            }
+                            else
+                            {
+                                command = new AddFS(xml);
+                                output += command.execute(collectionManager) + "\n";
+                            }
                         }
                         else {
-                            if (cList.contains(input)) {
-                                command = CommandManager.getCommand(input);
+                            if (cList.contains(input.strip().split("\\s+")[0])) {
+                                command = CommandManager.getCommand(input.strip().split("\\s+")[0]);
                                 if (command.isSingle) {
-                                    output += command.execute() + "\n";
+                                    output += command.execute();
                                 } else if (command.cllOnly) {
                                     output += command.execute(collectionManager) + "\n";
                                 } else {

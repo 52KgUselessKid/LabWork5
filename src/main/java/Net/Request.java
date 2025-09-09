@@ -15,7 +15,7 @@ public class Request implements Serializable {
 
     public Request(String content)
     {
-        args = content.split(" ");
+        args = content.strip().split("\\s+");
         try {
             command = getCommand(args[0].strip());
         }
@@ -27,7 +27,7 @@ public class Request implements Serializable {
 
     public Request(String content, Object object)
     {
-        args = content.split(" ");
+        args = content.strip().split("\\s+");
         try {
             command = getCommand(args[0].strip());
         }

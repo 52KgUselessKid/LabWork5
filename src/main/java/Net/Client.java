@@ -12,142 +12,48 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Client {
     static Scanner scanner = new Scanner(System.in);
     static final int maxRetCount = 10;
 
+    static SocketChannel socketChannel;
+    static Selector selector;
+
+    static ByteBuffer writeBuffer = ByteBuffer.allocate(8192);
+    static ByteBuffer readBuffer = ByteBuffer.allocate(8192);
+    static ByteArrayOutputStream readStream = new ByteArrayOutputStream();
+    static int expectedBytes = -1;
+
     public static void main(String[] args) throws InterruptedException {
         String host = "localhost";
         int port = 12345;
         int retryCount = 0;
-        String input = null;
+        String input;
 
         while (retryCount < maxRetCount) {
-            try (
-                    SocketChannel socketChannel = SocketChannel.open();
-            ) {
-                socketChannel.configureBlocking(false);
-                socketChannel.connect(new InetSocketAddress(host, port));
-
-                Selector selector = Selector.open();
-                socketChannel.register(selector, SelectionKey.OP_CONNECT);
-
-                ByteBuffer writeBuffer = ByteBuffer.allocate(8192);
-                ByteBuffer readBuffer = ByteBuffer.allocate(8192);
-                ByteArrayOutputStream readStream = new ByteArrayOutputStream();
-                int expectedBytes = -1;
+            try {
+                connect(host, port);
+                System.out.println("Вы подключились к серверу -_-");
+                retryCount = 0;
 
                 while (true) {
-                    selector.select(100);
+                    input = input();
+                    Request request = getRequest(input);
+                    if (request == null || request.getReqCommand() == null || !validateRequest(input, request)) {
+                        continue;
+                    }
 
-                    Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
-                    while (iter.hasNext()) {
-                        SelectionKey key = iter.next();
-                        iter.remove();
+                    sendRequest(request);
+                    Answer answer = receiveAnswer();
+                    if (answer != null && answer.getContent() != null) {
+                        System.out.println(answer.getContent());
+                    }
 
-                        SocketChannel channel = (SocketChannel) key.channel();
-
-                        if (key.isConnectable()) {
-                            if (channel.finishConnect()) {
-                                System.out.println("Вы подключились к серверу -_-");
-                                channel.register(selector, SelectionKey.OP_WRITE);
-                                retryCount = 0;
-                            }
-                        } else if (key.isWritable()) {
-                            input = input();
-
-                            Request request = getRequest(input);
-
-                            if(request == null || request.getReqCommand() == null || !validateRequest(input, request))
-                            {
-                                continue;
-                            }
-
-                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                            try (ObjectOutputStream oos = new ObjectOutputStream(bos)) {
-                                oos.writeObject(request);
-                            }
-
-                            byte[] bytes = bos.toByteArray();
-
-                            writeBuffer.clear();
-                            writeBuffer.putInt(bytes.length);
-                            writeBuffer.put(bytes);
-                            writeBuffer.flip();
-
-                            try {
-                                while (writeBuffer.hasRemaining()) {
-                                    channel.write(writeBuffer);
-                                }
-                            } catch (IOException e) {
-                                System.out.println("Ошибка записи: " + e.getMessage());
-                                key.cancel();
-                                channel.close();
-                                selector.close();
-                                throw e;
-                            }
-
-                            channel.register(selector, SelectionKey.OP_READ);
-                            readStream.reset();
-                            expectedBytes = -1;
-                        } else if (key.isReadable()) {
-                            readBuffer.clear();
-                            int read;
-                            try {
-                                read = channel.read(readBuffer);
-                            } catch (IOException e) {
-                                System.out.println("Ошибка чтения: " + e.getMessage());
-                                key.cancel();
-                                channel.close();
-                                selector.close();
-                                throw e;
-                            }
-
-                            if (read == -1) {
-                                System.out.println("Сервер отключился.");
-                                key.cancel();
-                                channel.close();
-                                selector.close();
-                                throw new IOException("Сервер закрыл соединение");
-                            }
-
-                            readBuffer.flip();
-                            while (readBuffer.hasRemaining()) {
-                                readStream.write(readBuffer.get());
-                            }
-
-                            byte[] total = readStream.toByteArray();
-                            if (expectedBytes == -1 && total.length >= 4) {
-                                expectedBytes = ByteBuffer.wrap(total, 0, 4).getInt();
-                            }
-
-                            if (expectedBytes != -1 && total.length >= expectedBytes + 4) {
-                                byte[] objectData = Arrays.copyOfRange(total, 4, 4 + expectedBytes);
-                                try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(objectData))) {
-                                    Answer answer = (Answer) ois.readObject();
-                                    if (answer.getContent() != null) {
-                                        System.out.println(answer.getContent());
-                                    }
-                                } catch (ClassNotFoundException e) {
-                                    System.out.println("Ошибка десериализации: " + e.getMessage());
-                                }
-
-                                channel.register(selector, SelectionKey.OP_WRITE);
-                                readStream.reset();
-                                expectedBytes = -1;
-                            }
-
-                            if ("exit".equalsIgnoreCase(input)) {
-                                channel.close();
-                                selector.close();
-                                return;
-                            }
-                        }
+                    if ("exit".equalsIgnoreCase(input)) {
+                        close();
+                        return;
                     }
                 }
 
@@ -162,6 +68,93 @@ public class Client {
         System.out.println("Превышено число попыток подключения. Клиент завершает работу.");
     }
 
+    static void connect(String host, int port) throws IOException {
+        socketChannel = SocketChannel.open();
+        socketChannel.configureBlocking(false);
+        socketChannel.connect(new InetSocketAddress(host, port));
+
+        selector = Selector.open();
+        socketChannel.register(selector, SelectionKey.OP_CONNECT);
+
+        while (true) {
+            selector.select(100);
+            Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+            while (iter.hasNext()) {
+                SelectionKey key = iter.next();
+                iter.remove();
+                SocketChannel channel = (SocketChannel) key.channel();
+                if (key.isConnectable() && channel.finishConnect()) {
+                    channel.register(selector, SelectionKey.OP_WRITE);
+                    return;
+                }
+            }
+        }
+    }
+
+    static void sendRequest(Request request) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try (ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+            oos.writeObject(request);
+        }
+        byte[] bytes = bos.toByteArray();
+
+        writeBuffer.clear();
+        writeBuffer.putInt(bytes.length);
+        writeBuffer.put(bytes);
+        writeBuffer.flip();
+
+        while (writeBuffer.hasRemaining()) {
+            socketChannel.write(writeBuffer);
+        }
+
+        socketChannel.register(selector, SelectionKey.OP_READ);
+        readStream.reset();
+        expectedBytes = -1;
+    }
+
+    static Answer receiveAnswer() throws IOException {
+        while (true) {
+            selector.select(100);
+            Iterator<SelectionKey> iter = selector.selectedKeys().iterator();
+            while (iter.hasNext()) {
+                SelectionKey key = iter.next();
+                iter.remove();
+
+                if (key.isReadable()) {
+                    readBuffer.clear();
+                    int read = socketChannel.read(readBuffer);
+                    if (read == -1) {
+                        throw new IOException("Сервер закрыл соединение");
+                    }
+
+                    readBuffer.flip();
+                    while (readBuffer.hasRemaining()) {
+                        readStream.write(readBuffer.get());
+                    }
+
+                    byte[] total = readStream.toByteArray();
+                    if (expectedBytes == -1 && total.length >= 4) {
+                        expectedBytes = ByteBuffer.wrap(total, 0, 4).getInt();
+                    }
+
+                    if (expectedBytes != -1 && total.length >= expectedBytes + 4) {
+                        byte[] objectData = Arrays.copyOfRange(total, 4, 4 + expectedBytes);
+                        try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(objectData))) {
+                            return (Answer) ois.readObject();
+                        } catch (ClassNotFoundException e) {
+                            System.out.println("Ошибка десериализации: " + e.getMessage());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    static void close() throws IOException {
+        if (socketChannel != null) socketChannel.close();
+        if (selector != null) selector.close();
+    }
+
     static Request getRequest(String input) {
         if (input == null || input.trim().isEmpty()) {
             return null;
@@ -173,18 +166,23 @@ public class Client {
         }
 
         String cName = parts[0].toLowerCase().trim();
-        System.out.println(cName);
         try {
             if (cName.equals("add") || cName.equals("update")) {
                 Request tempReq = new Request(input);
-                if(validateRequest(input, tempReq)) {
-                    if(cName.equals("update"))///  /////////////////
-                    {}
+                if (validateRequest(input, tempReq)) {
+                    if (cName.equals("update"))
+                    {
+                        sendRequest(new Request("check_id " + parts[1]));
+                        Answer answer = receiveAnswer();
+                        if(!answer.getContent().equals("ok"))
+                        {
+                            System.out.println("Неверный id!");
+                            return null;
+                        }
+                    }
                     MusicBand mb = CollectionManager.getNewMB();
                     return mb != null ? new Request(input, mb) : null;
-                }
-                else
-                {
+                } else {
                     return null;
                 }
             } else if (cName.equals("execute") && parts.length > 1) {
@@ -215,9 +213,8 @@ public class Client {
         }
     }
 
-    static boolean validateRequest(String input, Request request)
-    {
-        if (input.split(" ").length != request.getReqCommand().getCommArgCount()) {
+    static boolean validateRequest(String input, Request request) {
+        if (input.strip().split("\\s+").length != request.getReqCommand().getCommArgCount()) {
             System.out.println("Неверное кол-во аргументов! (нужно " + (request.getReqCommand().getCommArgCount() - 1) + ")");
             return false;
         }

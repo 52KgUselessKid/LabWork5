@@ -10,4 +10,13 @@ update 1
         <genre>MATH_ROCK</genre>
         <label>koko</label>
 </MusicBand>
+add
+<MusicBand>
+        <name>Zuuzyy</name>
+        <x>7</x>
+        <y>7</y>
+        <NumberOfParticipants>10</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>koko</label>
+</MusicBand>
 show

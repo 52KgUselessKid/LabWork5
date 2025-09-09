@@ -29,7 +29,7 @@ public class CommandManager {
                 input = input();
                 if (input == null) input = "";
 
-                String[] args = input.split(" ");
+                String[] args = input.strip().split("\\s+");
 
                 Command command = getCommand(args[0].strip());
 
@@ -76,6 +76,7 @@ public class CommandManager {
             case "show" -> command = new Show();
             case "update" -> command = new Update();
             //case "updatefs" -> command = new UpdateFS();
+            case "check_id" -> command = new CheckID();
             default -> throw new InvalidCommandException();
         }
 
