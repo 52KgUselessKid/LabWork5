@@ -11,6 +11,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -187,12 +188,13 @@ public class Client {
                 }
             } else if (cName.equals("execute") && parts.length > 1) {
                 String filePath = parts[1];
-                if (!Files.exists(Paths.get(filePath))) {
-                    System.out.println("Файл не найден: " + filePath);
-                    return null;
-                }
-                String fileContent = new String(Files.readAllBytes(Paths.get(filePath)));
-                return new Request(input, fileContent);
+                Map<String, String> scripts = new LinkedHashMap<>();
+                Set<String> visited = new LinkedHashSet<>();
+
+                loadFileRecursive(filePath, scripts, visited);
+                //System.out.println("nnnnnnnnnnnnnn\n" + scripts + "\nnnnnnnn");
+                // Теперь в scripts лежит карта (имя файла → содержимое)
+                return new Request(input, scripts);
             }
             return new Request(input);
         } catch (IOException e) {
@@ -201,6 +203,34 @@ public class Client {
         } catch (Exception e) {
             System.out.println("Неизвестная ошибка при создании запроса");
             return null;
+        }
+    }
+
+    static void loadFileRecursive(String filePath, Map<String, String> scripts, Set<String> visited) throws IOException {
+        if (visited.contains(filePath)) {
+            return; // чтобы не зациклиться
+        }
+        visited.add(filePath);
+
+        Path path = Paths.get(filePath);
+        if (!Files.exists(path)) {
+            System.out.println("Файл не найден: " + filePath);
+            return;
+        }
+
+        String content = new String(Files.readAllBytes(path));
+        scripts.put(filePath, content);
+
+        List<String> lines = Files.readAllLines(path);
+        for (String line : lines) {
+            line = line.trim();
+            if (line.startsWith("execute ")) {
+                String[] parts = line.split("\\s+", 2);
+                if (parts.length > 1) {
+                    String nestedFile = parts[1];
+                    loadFileRecursive(nestedFile, scripts, visited);
+                }
+            }
         }
     }
 
