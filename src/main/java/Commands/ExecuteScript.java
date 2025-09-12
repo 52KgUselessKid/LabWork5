@@ -14,7 +14,7 @@ import java.util.*;
 public class ExecuteScript extends Command {
 
     static String[] cNames = {"add", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
-            "load", "print", "remove", "remove_head", "remove_lower", "show", "update"};
+            "load", "print", "remove", "remove_head", "remove_lower", "show", "update", "save"};
     static ArrayList<String> cList = new ArrayList<>(List.of(cNames));
     static Map<String, String> scripts;
     static Map<String, Integer> scriptsExeCount = new HashMap<>();
@@ -34,15 +34,21 @@ public class ExecuteScript extends Command {
      * @param args параметры для команды */
     @Override
     public String execute(CollectionManager collectionManager, String[] args, Object object) {
-        scripts = (Map<String, String>) object;
+        try {
+            scripts = (Map<String, String>) object;
 
-        for(String scriptName : scripts.keySet())
-        {
-            scriptsExeCount.put(scriptName, 0);
+            for (String scriptName : scripts.keySet()) {
+                scriptsExeCount.put(scriptName, 0);
+            }
+
+            scriptsExeCount.put(scripts.keySet().iterator().next(), scriptsExeCount.get(scripts.keySet().iterator().next()) + 1);
+
+            return getOutput(collectionManager, scripts.get(scripts.keySet().iterator().next()));
         }
-
-        scriptsExeCount.put(scripts.keySet().iterator().next(), scriptsExeCount.get(scripts.keySet().iterator().next()) + 1);
-    return getOutput(collectionManager, scripts.get(scripts.keySet().iterator().next()));
+        catch (NoSuchElementException e)
+        {
+            return "Нет такого файла!";
+        }
     }
 
     static String getOutput(CollectionManager collectionManager, String fileContent)
@@ -102,6 +108,20 @@ public class ExecuteScript extends Command {
                             }
                             else {
                                 output += command.execute(collectionManager, args1) + "\n";
+                            }
+                        }
+                        else
+                        {
+                            if(!input.strip().split("\\s+")[0].isEmpty()) {
+                                String scriptName = scripts.entrySet()
+                                        .stream()
+                                        .filter(e -> Objects.equals(e.getValue(), fileContent))
+                                        .map(Map.Entry::getKey)
+                                        .findFirst()
+                                        .orElse("неизвестный_скрипт");
+
+                                output += "Нет такой команды " + input.strip().split("\\s+")[0] +
+                                        " | скрипт: " + scriptName + "\n";
                             }
                         }
                     }

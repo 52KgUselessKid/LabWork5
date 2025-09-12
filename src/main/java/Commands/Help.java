@@ -22,13 +22,13 @@ public class Help extends Command {
         String[] cNames = {"add", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",
                 "load", "print", "remove", "remove_head", "remove_lower", "show", "update"};
 
-        output += "***************************";
+        output += "***************************\n";
             for(String commandName : cNames)
             {
                 Command command = CommandManager.getCommand(commandName);
                 output += command.getDescription();
             }
-        output += "***************************";
+        output += "***************************\n";
     return output;
     }
     }

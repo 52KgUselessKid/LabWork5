@@ -2,12 +2,12 @@
 <MusicBands>
     <MusicBand>
         <id>1</id>
-        <name>Scubyyyy</name>
-        <coordinates>5_5</coordinates>
-        <creationDate>1757536768385</creationDate>
-        <NumberOfParticipants>10</NumberOfParticipants>
-        <genre>MATH_ROCK</genre>
-        <label>koko</label>
+        <name>SigmaBoys</name>
+        <coordinates>3_4</coordinates>
+        <creationDate>1744129937309</creationDate>
+        <NumberOfParticipants>12</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>null</label>
     </MusicBand>
     <MusicBand>
         <id>2</id>
@@ -26,23 +26,5 @@
         <NumberOfParticipants>6</NumberOfParticipants>
         <genre>POST_PUNK</genre>
         <label>null</label>
-    </MusicBand>
-    <MusicBand>
-        <id>4</id>
-        <name>rgr</name>
-        <coordinates>4_5</coordinates>
-        <creationDate>1757409532917</creationDate>
-        <NumberOfParticipants>6</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>ff</label>
-    </MusicBand>
-    <MusicBand>
-        <id>5</id>
-        <name>Zuuzyy</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1757444130349</creationDate>
-        <NumberOfParticipants>10</NumberOfParticipants>
-        <genre>MATH_ROCK</genre>
-        <label>koko</label>
     </MusicBand>
 </MusicBands>

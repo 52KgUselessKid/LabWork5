@@ -192,8 +192,7 @@ public class Client {
                 Set<String> visited = new LinkedHashSet<>();
 
                 loadFileRecursive(filePath, scripts, visited);
-                //System.out.println("nnnnnnnnnnnnnn\n" + scripts + "\nnnnnnnn");
-                // Теперь в scripts лежит карта (имя файла → содержимое)
+
                 return new Request(input, scripts);
             }
             return new Request(input);
@@ -208,13 +207,12 @@ public class Client {
 
     static void loadFileRecursive(String filePath, Map<String, String> scripts, Set<String> visited) throws IOException {
         if (visited.contains(filePath)) {
-            return; // чтобы не зациклиться
+            return;
         }
         visited.add(filePath);
 
         Path path = Paths.get(filePath);
         if (!Files.exists(path)) {
-            System.out.println("Файл не найден: " + filePath);
             return;
         }
 

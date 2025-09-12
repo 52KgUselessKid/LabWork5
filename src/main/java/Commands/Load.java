@@ -37,6 +37,9 @@ public class Load extends Command {
             String xmlContent = new String(buffer);
 
             String[] xmlBands = xmlContent.split("<MusicBand>");
+
+            new Clear().execute(collectionManager);
+
             for (int i = 1; i < xmlBands.length; i++) {
                 if (!xmlBands[i].trim().isEmpty()) {
                     MusicBand musicBand = MusicBand.toMBand(xmlBands[i]);
@@ -48,6 +51,6 @@ public class Load extends Command {
 
             return "Коллекция загружена!";
         } catch (Exception e) {
-            return "Коллекция загружена! Нет такого файла!";}
+            return "Коллекция не загружена! Нет такого файла!";}
     }
     }

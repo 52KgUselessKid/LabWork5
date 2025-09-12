@@ -21,7 +21,7 @@ import static Managers.CommandManager.input;
     final LocalDateTime dateCreated = LocalDateTime.now();
 
     /** Путь к группе */
-    final String pathToCollection = System.getenv("FILE_NAME");
+    final String pathToCollection = CollectionManager.class.getResource("CollectionManager.class").getPath();;
 
     /** Возвращает новый объект муз группы
      * @param args знаяения группы которые вводит пользователь

@@ -37,7 +37,7 @@ public class Save extends Command {
                 writer.write("</MusicBands>\n");
                 return "Сохранено!";
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                return "Не сохранено! Неверный входной файл!";
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
