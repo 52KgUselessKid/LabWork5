@@ -8,8 +8,8 @@ import java.util.Date;
 /** Класс, представляющий музыкальную группу */
 public class MusicBand implements Comparable<MusicBand>, Serializable {
 
-    /** счетчик уникального id */
-    static int idCounter = 1;
+    ///** счетчик уникального id */
+    //static int idCounter = 1;
 
     /** id группы */
     int id; // > 0
@@ -32,23 +32,22 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
     /** Лейбл */
     Label label; // not null
 
+    int user_id;
+
     /** Конструктор */
-    public MusicBand(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
-        setStats(name, coordinates, numberOfParticipants, genre, label);
-        this.id = idCounter++;
+    public MusicBand(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label, int user_id) {
+        setStats(name, coordinates, numberOfParticipants, genre, label, user_id);
     }
 
     /** Конструктор */
-    public MusicBand(int id, String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
-        setStats(name, coordinates, numberOfParticipants, genre, label);
+    public MusicBand(int id, String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label, int user_id) {
+        setStats(name, coordinates, numberOfParticipants, genre, label, user_id);
         this.id = id;
-        if (id >= idCounter) {
-            idCounter = id + 1;
-        }
+        this.user_id = user_id;
     }
 
     /** Сеттер для полей */
-    public void setStats(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label) {
+    public void setStats(String name, Coordinates coordinates, long numberOfParticipants, MusicGenre genre, Label label, int user_id) {
         if (name == null || name.isEmpty()) throw new IllegalArgumentException("name != null or empty");
         if (coordinates == null) throw new IllegalArgumentException("coordinates != null");
         if (numberOfParticipants <= 0) throw new IllegalArgumentException("num of parts > 0");
@@ -58,6 +57,7 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
         this.numberOfParticipants = numberOfParticipants;
         this.genre = genre;
         this.label = label;
+        this.user_id = user_id;
     }
 
     /** Возвращает id
@@ -102,6 +102,11 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
         return label;
     }
 
+    public int getUserID()
+    {
+        return user_id;
+    }
+
     /** Возвращает Xml группы */
     public String getXML() {
         String xmlBlock = "";
@@ -127,7 +132,7 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
         MusicGenre genre = MusicGenre.valueOf(xml.split("<genre>")[1].split("</genre>")[0].trim());
         Label label = Label.fromXML(xml);
         int numberOfParticipants = Integer.parseInt(xml.split("<NumberOfParticipants>")[1].split("</NumberOfParticipants>")[0].trim());
-        MusicBand musicBand = new MusicBand(id, name, coordinates, numberOfParticipants, genre, label);
+        MusicBand musicBand = new MusicBand(id, name, coordinates, numberOfParticipants, genre, label, 1);
         musicBand.setCDate(creationDateMillis);
         return musicBand;
     }
@@ -136,6 +141,11 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
      * @param creationDateMillis значение даты в мс */
     public void setCDate(long creationDateMillis) {
         creationDate = new Date(creationDateMillis);
+    }
+
+    public long getCDate()
+    {
+        return creationDate.getTime();
     }
 
     /** Возвращает строковое представление группы

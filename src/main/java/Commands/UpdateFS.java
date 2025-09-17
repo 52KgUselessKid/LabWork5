@@ -49,7 +49,7 @@ public class UpdateFS extends Command {
 
             collectionManager.mbCollection = collectionManager.mbCollection.stream()
                     .map(mb -> mb.getId() == mbID
-                            ? new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel)
+                            ? new MusicBand(mbID, mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel, 8)
                             : mb)
                     .collect(Collectors.toCollection(ArrayDeque::new));
 

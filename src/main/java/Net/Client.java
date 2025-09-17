@@ -1,6 +1,7 @@
 package Net;
 
 import Classes.MusicBand;
+import DB.DbStuff;
 import Managers.CollectionManager;
 
 import java.io.*;
@@ -13,6 +14,8 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Client {
@@ -27,6 +30,9 @@ public class Client {
     static ByteArrayOutputStream readStream = new ByteArrayOutputStream();
     static int expectedBytes = -1;
 
+    static boolean authorized;
+    public static int clientID;
+
     public static void main(String[] args) throws InterruptedException {
         String host = "localhost";
         int port = 12345;
@@ -39,8 +45,13 @@ public class Client {
                 System.out.println("Вы подключились к серверу -_-");
                 retryCount = 0;
 
+                logIn();
+
                 while (true) {
                     input = input();
+
+                    if(authorized)
+                    {
                     Request request = getRequest(input);
                     if (request == null || request.getReqCommand() == null || !validateRequest(input, request)) {
                         continue;
@@ -57,12 +68,18 @@ public class Client {
                         return;
                     }
                 }
+                    else
+                    {
+                        System.out.println("Авторизуйтесь для выполнения команд!");
+                    }
+                }
 
             } catch (ConnectException e) {
                 retryCount++;
                 System.out.println("Сервер недоступен. Попытка " + retryCount + " из " + maxRetCount);
                 Thread.sleep(3000);
             } catch (IOException e) {
+                System.out.println("И сниться нам..." + e.getMessage());
             }
         }
 
@@ -235,7 +252,12 @@ public class Client {
     static String input() {
         System.out.print("$ ");
         try {
-            return scanner.nextLine();
+            String input = scanner.nextLine();
+            if(input == null)
+            {
+                input = "";
+            }
+            return input;
         } catch (NoSuchElementException e) {
             return "exit";
         }
@@ -247,5 +269,65 @@ public class Client {
             return false;
         }
         return true;
+    }
+
+    public static short authClient(String name, String password) throws IOException {
+        sendRequest(new Request("auth " + name + " " + password));
+        Answer answer = receiveAnswer();
+        if(answer.getContent().equals("y"))
+        {
+            return 1;
+        }
+        else if(answer.getContent().equals("n"))
+        {
+            System.out.println("Нет такого пользователя");
+            return 0;
+        }
+        else if(answer.getContent().equals("p"))
+        {
+            System.out.println("Неверный пароль!");
+            return 2;
+        }
+        return 0;
+    }
+
+    static void logIn() throws IOException {
+        String name, password;
+        System.out.println("Вход в систему\nВведите имя пользователя и пароль.\n" +
+                "при отсутвии пользователя в базе данных, вам будет предложено зарегистрироваться.");
+        while (!authorized) {
+            System.out.println("Введите имя пользователя:");
+            name = input();
+            System.out.println("Введите пароль:");
+            password = input();
+
+            int authState = authClient(name, password);
+
+            Answer answer;
+
+            switch (authState)
+            {
+                case 1:
+                    sendRequest(new Request("get_user_id " + name));
+                    answer = receiveAnswer();
+                    clientID = Integer.parseInt(answer.getContent());
+                    authorized = true;
+                    System.out.println("Welcome to NotFreeBSD!");
+                    break;
+                case 2:
+                    break;
+                case 0:
+                    System.out.println("Хотите создать учётную запись с такими данными? (0-0)\n" +
+                            "да - y, нет - другое");
+                    if(input().equals("y"))
+                    {
+                        sendRequest(new Request("add_user " + name + " " + password));
+                        answer = receiveAnswer();
+                        System.out.println(answer.getContent());
+                    }
+                    break;
+            }
+        }
+        System.out.println(clientID);
     }
 }

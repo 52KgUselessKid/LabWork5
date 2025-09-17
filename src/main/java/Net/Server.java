@@ -4,6 +4,7 @@ import Classes.Command;
 import Classes.MusicBand;
 import Commands.Load;
 import Commands.Save;
+import DB.DbStuff;
 import Exceptions.NotReceivedException;
 import Managers.CollectionManager;
 
@@ -34,6 +35,8 @@ public class Server {
         {
             logger.info("Сервер запущен с пустой коллекцией");
         }
+
+        DbStuff.connectToDB();
 
         logger.info(new Load().execute(collectionManager, new String[]{null, cPath}));
 

@@ -39,7 +39,7 @@ public class AddFS extends Command {
             MusicGenre genre = MusicGenre.valueOf(xml.split("<genre>")[1].split("</genre>")[0].trim());
             Label mbLabel = new Label(xml.split("<label>")[1].split("</label>")[0].trim());
 
-            MusicBand mBand = new MusicBand(mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel);
+            MusicBand mBand = new MusicBand(mbName, new Coordinates(mbX, mbY), mbPartsNum, genre, mbLabel, 9);
 
             return new Add().execute(collectionManager, mBand);
 

@@ -4,6 +4,7 @@ import Classes.Coordinates;
 import Classes.Label;
 import Classes.MusicBand;
 import Enums.MusicGenre;
+import Net.Client;
 
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
@@ -39,7 +40,7 @@ import static Managers.CommandManager.input;
             }
         }
         String labelName = args[6];
-        return new MusicBand(name, new Coordinates(x, y), numOfPrtns, musicGenre, new Label(labelName));
+        return new MusicBand(name, new Coordinates(x, y), numOfPrtns, musicGenre, new Label(labelName), Client.clientID);
     }
 
     /** Возвращает новый объект муз группы, каждое значение пользователь вводит отдельно
@@ -107,7 +108,7 @@ import static Managers.CommandManager.input;
 
         System.out.println("Введите лэйбл:");
         String labelName = input();
-        return new MusicBand(name, coordinates, numOfPrtns, musicGenre, new Label(labelName));
+        return new MusicBand(name, coordinates, numOfPrtns, musicGenre, new Label(labelName), Client.clientID);
     }
 
     /** Выдает информацию о группе

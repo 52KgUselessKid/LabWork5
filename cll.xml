@@ -7,7 +7,7 @@
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>12</NumberOfParticipants>
         <genre>JAZZ</genre>
-        <label>null</label>
+        <label>jjj</label>
     </MusicBand>
     <MusicBand>
         <id>2</id>
@@ -16,7 +16,7 @@
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>2</NumberOfParticipants>
         <genre>MATH_ROCK</genre>
-        <label>null</label>
+        <label>jjj</label>
     </MusicBand>
     <MusicBand>
         <id>3</id>
@@ -25,6 +25,60 @@
         <creationDate>1744129937309</creationDate>
         <NumberOfParticipants>6</NumberOfParticipants>
         <genre>POST_PUNK</genre>
+        <label>jjj</label>
+    </MusicBand>
+    <MusicBand>
+        <id>4</id>
+        <name>hoho</name>
+        <coordinates>7_7</coordinates>
+        <creationDate>1758130747065</creationDate>
+        <NumberOfParticipants>7</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>null</label>
+    </MusicBand>
+    <MusicBand>
+        <id>5</id>
+        <name>hoho</name>
+        <coordinates>7_7</coordinates>
+        <creationDate>1758131012128</creationDate>
+        <NumberOfParticipants>7</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>null</label>
+    </MusicBand>
+    <MusicBand>
+        <id>6</id>
+        <name>hoho</name>
+        <coordinates>7_7</coordinates>
+        <creationDate>1758131227267</creationDate>
+        <NumberOfParticipants>7</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>htt</label>
+    </MusicBand>
+    <MusicBand>
+        <id>7</id>
+        <name>hoho</name>
+        <coordinates>7_7</coordinates>
+        <creationDate>1758131309752</creationDate>
+        <NumberOfParticipants>7</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>jgj</label>
+    </MusicBand>
+    <MusicBand>
+        <id>4</id>
+        <name>hoho</name>
+        <coordinates>7_7</coordinates>
+        <creationDate>1758131391751</creationDate>
+        <NumberOfParticipants>7</NumberOfParticipants>
+        <genre>JAZZ</genre>
+        <label>hr</label>
+    </MusicBand>
+    <MusicBand>
+        <id>9</id>
+        <name>hyhy</name>
+        <coordinates>6_6</coordinates>
+        <creationDate>1758131454586</creationDate>
+        <NumberOfParticipants>6</NumberOfParticipants>
+        <genre>JAZZ</genre>
         <label>null</label>
     </MusicBand>
 </MusicBands>

@@ -41,7 +41,7 @@ public class Update extends Command {
                         if (musicBand.getId() == mbID) {
                             MusicBand mb = (MusicBand) musB;
                             return new MusicBand(mbID, mb.getName(), mb.getCoordinates(),
-                                    mb.getPartsNum(), mb.getGenre(), mb.getLabel());
+                                    mb.getPartsNum(), mb.getGenre(), mb.getLabel(), 9);
                         }
                         return musicBand;
                     })

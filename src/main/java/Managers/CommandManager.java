@@ -77,6 +77,9 @@ public class CommandManager {
             case "update" -> command = new Update();
             //case "updatefs" -> command = new UpdateFS();
             case "check_id" -> command = new CheckID();
+            case "auth" -> command = new CheckUser();
+            case "add_user" -> command = new AddUser();
+            case "get_user_id" -> command = new GetUserID();
             default -> throw new InvalidCommandException();
         }
 

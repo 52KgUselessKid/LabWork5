@@ -29,4 +29,14 @@ public class Coordinates implements Serializable {
         String inXml = xml.split("<coordinates>")[1].split("</coordinates>")[0].trim();
         return new Coordinates(Integer.parseInt(inXml.split("_")[0]), Long.parseLong(inXml.split("_")[1]));
     }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public long getY()
+    {
+        return y;
+    }
 }
