@@ -72,7 +72,7 @@ public class CommandManager {
             case "remove" -> command = new Remove();
             case "remove_head" -> command = new Remove_head();
             case "remove_lower" -> command = new Remove_lower();
-            case "save" -> command = new Save();
+            //case "save" -> command = new Save();
             case "show" -> command = new Show();
             case "update" -> command = new Update();
             //case "updatefs" -> command = new UpdateFS();

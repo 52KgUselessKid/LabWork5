@@ -1,7 +1,6 @@
 package Commands;
 
 import Classes.Command;
-import Classes.MusicBand;
 import DB.DbStuff;
 import Managers.CollectionManager;
 

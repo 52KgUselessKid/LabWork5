@@ -4,9 +4,7 @@ import Classes.Command;
 import Classes.MusicBand;
 import Commands.CheckUser;
 import Commands.Load;
-import Commands.Save;
 import DB.DbStuff;
-import Exceptions.NotReceivedException;
 import Managers.CollectionManager;
 
 import java.io.*;
@@ -25,11 +23,9 @@ import java.util.logging.Logger;
 public class Server {
     public static Logger logger = Logger.getLogger("logger");
 
-    // Threading resources
     private static final ForkJoinPool readPool = new ForkJoinPool();
     private static final ExecutorService processPool = Executors.newCachedThreadPool();
 
-    // Read-write lock for synchronizing access to the collection
     private static final ReadWriteLock collectionLock = new ReentrantReadWriteLock();
 
     static CollectionManager collectionManager;
@@ -41,28 +37,9 @@ public class Server {
 
         logger.info("Загрузка данных коллекции...");
 
-        String cPath = "";
-
-        try {
-            cPath = args[0];
-        }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            logger.info("Сервер запущен с пустой коллекцией");
-        }
-
         DbStuff.connectToDB();
 
-        logger.info(new Load().execute(collectionManager, new String[]{null, cPath}, 0));
-
-        String path = cPath;
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            logger.info("Сервер отключен\n" + new Save().execute(collectionManager, new String[]{null, path}, 0));
-
-            // shutdown thread pools
-            readPool.shutdownNow();
-            processPool.shutdownNow();
-        }));
+        logger.info(new Load().execute(collectionManager, new String[]{null, ""}, 0));
 
         int port = 12345;
         boolean running = true;
@@ -77,10 +54,7 @@ public class Server {
                 Socket clientSocket = getClientSocket(serverSocket);
                 clientSocket.setSoTimeout(200);
 
-                // handle each client in its own short-lived handler running on the processPool
                 processPool.submit(() -> handleClient(clientSocket, collectionManager));
-
-                // main thread continues to accept new connections
             }
         } catch (IOException e) {
             logger.warning("Ошибка в главном потоке сервера: " + e.getMessage());
@@ -101,8 +75,6 @@ public class Server {
                 BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in))
         ) {
             while (running && !clientSocket.isClosed()) {
-                // allow console commands to shutdown server if this is the server main console
-                // Note: consoleReader.ready() will usually be false here; this is kept for parity with original logic
                 try {
                     if (consoleReader.ready()) {
                         String command = consoleReader.readLine();
@@ -115,7 +87,6 @@ public class Server {
                 } catch (IOException ignored) {}
 
                 try {
-                    // 1) Read the request using ForkJoinPool
                     Future<Request> readFuture = readPool.submit(() -> receiveRequest(in));
 
                     Request request;
@@ -123,13 +94,11 @@ public class Server {
                         request = readFuture.get();
                     } catch (ExecutionException ee) {
                         Throwable cause = ee.getCause();
-                        // разворачиваем цепочку причин
                         while (cause instanceof RuntimeException && cause.getCause() != null) {
                             cause = cause.getCause();
                         }
 
                         if (cause instanceof SocketTimeoutException) {
-                            // нормальная ситуация: просто нет данных
                             Thread.sleep(50);
                             continue;
                         } else if (cause instanceof EOFException) {
@@ -152,13 +121,11 @@ public class Server {
                         continue;
                     }
 
-                    // 2) Process the request on cached thread pool
                     processPool.submit(() -> {
                         try {
                             String result = getResultWithLock(collectionManager, request);
                             Answer answer = new Answer(result);
 
-                            // 3) Send the answer using a new Thread as requested
                             new Thread(() -> {
                                 try {
                                     sendAnswer(out, answer);
@@ -185,11 +152,6 @@ public class Server {
         }
     }
 
-    // This wrapper decides whether to take a read or write lock around getResult.
-    // Heuristic used:
-    // - If command.cllOnly is true we conservatively assume it may modify the collection -> use write lock.
-    // - If the received request carries an object (e.g. add/update) -> use write lock.
-    // - Otherwise use read lock.
     static String getResultWithLock(CollectionManager collectionManager, Request received) {
         Command command = received.getReqCommand();
         if (command == null) {
@@ -198,7 +160,6 @@ public class Server {
 
         boolean needWrite = false;
         try {
-            // heuristics
             if (command.cllOnly) needWrite = true;
             if (received.getObject() != null) needWrite = true;
 
@@ -223,7 +184,6 @@ public class Server {
         }
     }
 
-    // Original getResult is preserved but made private to be used inside locking wrapper
     static String getResult(CollectionManager collectionManager, Request received) {
         String[] in_args = received.getArgs();
         Command command = received.getReqCommand();
@@ -246,6 +206,13 @@ public class Server {
                 }
             }
             logger.info("Выполнение запроса... " + "(пользователь: " + userName + ")");
+
+            try {
+                if(checkUser(received.userData))
+                {
+                    logger.info("Пользователь " + userName + " идентифицирован");
+                }
+            }catch (NullPointerException e){}
             if (command.isSingle) {
                 result = command.execute(uid);
             } else if (command.cllOnly) {

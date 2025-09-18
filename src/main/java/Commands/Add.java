@@ -4,7 +4,6 @@ import Classes.Command;
 import Classes.MusicBand;
 import DB.DbStuff;
 import Managers.CollectionManager;
-import Net.Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -11,7 +11,6 @@ import Managers.CollectionManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayDeque;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /** Класс команды Update, наследуется от Command */

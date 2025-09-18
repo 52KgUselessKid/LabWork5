@@ -1,7 +1,6 @@
 package Net;
 
 import Classes.MusicBand;
-import DB.DbStuff;
 import Managers.CollectionManager;
 
 import java.io.*;
@@ -14,8 +13,6 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class Client {

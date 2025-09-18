@@ -1,10 +1,8 @@
 package Commands;
 
 import Classes.Command;
-import Classes.MusicBand;
 import DB.DbStuff;
 import Managers.CollectionManager;
-import Net.Server;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
