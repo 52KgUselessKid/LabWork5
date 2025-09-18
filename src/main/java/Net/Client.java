@@ -298,8 +298,8 @@ public class Client {
 
     static void logIn() throws IOException {
         String name, password;
-        System.out.println("Вход в систему\nВведите имя пользователя и пароль.\n" +
-                "при отсутвии пользователя в базе данных, вам будет предложено зарегистрироваться.");
+        System.out.println("\n$$$$_Вход в систему_$$$\nВведите имя пользователя и пароль\n" +
+                " (при отсутвии пользователя в базе данных, вам будет предложено зарегистрироваться)");
         while (!authorized) {
             System.out.println("Введите имя пользователя:");
             name = input();
