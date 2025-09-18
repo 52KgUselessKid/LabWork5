@@ -32,6 +32,7 @@ public class Client {
 
     static boolean authorized;
     public static int clientID;
+    static UserData userData;
 
     public static void main(String[] args) throws InterruptedException {
         String host = "localhost";
@@ -79,7 +80,8 @@ public class Client {
                 System.out.println("Сервер недоступен. Попытка " + retryCount + " из " + maxRetCount);
                 Thread.sleep(3000);
             } catch (IOException e) {
-                System.out.println("И сниться нам..." + e.getMessage());
+                //System.out.println("И сниться нам..." + e.getMessage());
+                e.printStackTrace();
             }
         }
 
@@ -186,20 +188,26 @@ public class Client {
         String cName = parts[0].toLowerCase().trim();
         try {
             if (cName.equals("add") || cName.equals("update")) {
-                Request tempReq = new Request(input);
+                Request tempReq = new Request(input, userData);
                 if (validateRequest(input, tempReq)) {
                     if (cName.equals("update"))
                     {
-                        sendRequest(new Request("check_id " + parts[1]));
+                        sendRequest(new Request("check_id " + parts[1], userData));
                         Answer answer = receiveAnswer();
                         if(!answer.getContent().equals("ok"))
                         {
-                            System.out.println("Неверный id!");
+                            if(answer.getContent().equals("notOK")) {
+                                System.out.println("Неверный id!");
+                            }
+                            else if(answer.getContent().equals("notOKuser"))
+                            {
+                                System.out.println("Эта группа вам не принадлежит!");
+                            }
                             return null;
                         }
                     }
                     MusicBand mb = CollectionManager.getNewMB();
-                    return mb != null ? new Request(input, mb) : null;
+                    return mb != null ? new Request(input, mb, userData) : null;
                 } else {
                     return null;
                 }
@@ -210,9 +218,9 @@ public class Client {
 
                 loadFileRecursive(filePath, scripts, visited);
 
-                return new Request(input, scripts);
+                return new Request(input, scripts, userData);
             }
-            return new Request(input);
+            return new Request(input, userData);
         } catch (IOException e) {
             System.out.println("Ошибка: " + e.getMessage());
             return null;
@@ -310,8 +318,13 @@ public class Client {
                 case 1:
                     sendRequest(new Request("get_user_id " + name));
                     answer = receiveAnswer();
+
                     clientID = Integer.parseInt(answer.getContent());
+
+                    userData = new UserData(name, password);
+
                     authorized = true;
+
                     System.out.println("Welcome to NotFreeBSD!");
                     break;
                 case 2:
@@ -328,6 +341,5 @@ public class Client {
                     break;
             }
         }
-        System.out.println(clientID);
     }
 }

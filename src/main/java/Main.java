@@ -9,7 +9,7 @@ public class Main {
 
         CommandManager commandManager = new CommandManager();
 
-        Load load = new Load(); load.execute(collectionManager, new String[]{null, "cll.xml"});
+        Load load = new Load(); load.execute(collectionManager, new String[]{null, "cll.xml"}, 0);
 
         commandManager.openConsole(collectionManager);
 

@@ -21,7 +21,7 @@ public class AddUser extends Command {
     /** Даёт пользователю информацию о коллекции
      @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         try {
             String password;
 

@@ -25,16 +25,8 @@ public class Add extends Command {
     /** Позволяет пользователю добавить музыкальную группу
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager, MusicBand mb) {
+    public String execute(CollectionManager collectionManager, MusicBand mb, int uid) {
         int newMBandID = 1;
-//        for(MusicBand mBand : collectionManager.mbCollection)
-//        {
-//            if(mBand.getId() > newMBandID)
-//            {
-//                newMBandID = mBand.getId();
-//            }
-//        }
- //       newMBandID++;
         try {
             DbStuff.exeQueryVoid("INSERT INTO mbCollection(name, coordinate_x, coordinate_y, creationdate, numberofparticipants, " +
                     "genre, label_, userid) VALUES('" + mb.getName() + "', " + mb.getCoordinates().getX() + ", " + mb.getCoordinates().getY() +

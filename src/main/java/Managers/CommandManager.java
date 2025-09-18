@@ -34,14 +34,14 @@ public class CommandManager {
                 Command command = getCommand(args[0].strip());
 
                 if(command.isSingle) {
-                    command.execute();
+                    command.execute(0);
                 }
                 else if (command.cllOnly){
-                    command.execute(collectionManager);
+                    command.execute(collectionManager, 0);
                 }
                 else
                 {
-                    command.execute(collectionManager, args);
+                    command.execute(collectionManager, args, 0);
                 }
             }
             catch (InvalidCommandException e) {

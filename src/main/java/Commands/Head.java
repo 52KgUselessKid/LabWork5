@@ -18,7 +18,7 @@ public class Head extends Command {
     /** Даёт пользователю вывести первый элемент коллекции
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager, int uid) {
         return collectionManager.mbCollection.stream()
                 .findFirst()
                 .map(band -> {

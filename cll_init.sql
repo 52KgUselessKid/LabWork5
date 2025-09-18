@@ -20,6 +20,6 @@ CREATE TABLE IF NOT EXISTS mbCollection (
 );
 
 INSERT INTO mbCollection (name, coordinate_x, coordinate_y, creationDate, numberOfParticipants, genre, label_) VALUES 
-('SigmaBoys', 3, 4, '1744129937309', 12, 'JAZZ', 'jjj'),
-('Skibidi', 3, 4, '1744129937309', 2, 'MATH_ROCK', 'jjj'),
-('ITMO', 3, 4, '1744129937309', 6, 'POST_PUNK', 'jjj');
+('SigmaBoys', 3, 4, '1744129937309', 12, 'JAZZ', 'jjj', 1),
+('Skibidi', 3, 4, '1744129937309', 2, 'MATH_ROCK', 'jjj', 2),
+('ITMO', 3, 4, '1744129937309', 6, 'POST_PUNK', 'jjj', 2);

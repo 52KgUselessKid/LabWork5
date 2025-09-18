@@ -2,7 +2,11 @@ package Commands;
 
 import Classes.Command;
 import Classes.MusicBand;
+import DB.DbStuff;
 import Managers.CollectionManager;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /** Класс команды Info, наследуется от Command */
 public class CheckID extends Command {
@@ -18,7 +22,7 @@ public class CheckID extends Command {
     /** Даёт пользователю информацию о коллекции
      @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         int mBandID = 0;
         try {
             mBandID = Integer.parseInt(args[1]);
@@ -31,7 +35,25 @@ public class CheckID extends Command {
         {
                 if(mBandID == mBand.getId())
                 {
-                    return "ok";
+                    try {
+                        ResultSet set = DbStuff.exeQuery("SELECT userid FROM mbCollection WHERE id=" + mBandID + ";");
+                        if(set.next())
+                        {
+                            if(uid == set.getInt("userid"))
+                            {
+                                return "ok";
+                            }
+                            else
+                            {
+                                return "notOKuser";
+                            }
+                        }
+
+                    }
+                    catch (SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
         }
         return "notOK";

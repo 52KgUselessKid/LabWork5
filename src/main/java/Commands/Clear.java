@@ -1,8 +1,10 @@
 package Commands;
 
 import Classes.Command;
+import DB.DbStuff;
 import Managers.CollectionManager;
 
+import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.stream.Collectors;
 
@@ -21,10 +23,17 @@ public class Clear extends Command {
     /** Позволяет очистить коллекцию
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager) {
-        collectionManager.mbCollection = collectionManager.mbCollection.stream()
-                .filter(e -> false)
-                .collect(Collectors.toCollection(ArrayDeque::new));
-        return "Коллекция очищена!";
+    public String execute(CollectionManager collectionManager, int uid) {
+        try {
+            DbStuff.exeQueryVoid("DELETE FROM mbCollection WHERE userid =" + uid + ";");
+            collectionManager.mbCollection = collectionManager.mbCollection.stream()
+                    .filter(e -> e.getUserID() != uid)
+                    .collect(Collectors.toCollection(ArrayDeque::new));
+            return "Коллекция очищена!";
+        }
+        catch (SQLException e)
+        {
+            return e.getMessage();
+        }
     }
 }

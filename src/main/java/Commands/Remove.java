@@ -1,7 +1,11 @@
 package Commands;
 
 import Classes.Command;
+import DB.DbStuff;
 import Managers.CollectionManager;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /** Класс команды Remove, наследуется от Command */
 public class Remove extends Command {
@@ -20,20 +24,43 @@ public class Remove extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         try {
             int mbID = Integer.parseInt(args[1]);
+            try {
+                ResultSet set = DbStuff.exeQuery("SELECT userid FROM mbCollection WHERE id=" + mbID + ";");
 
-            boolean removed = collectionManager.mbCollection.stream()
-                    .filter(musicBand -> musicBand.getId() == mbID)
-                    .findFirst()
-                    .map(musicBand -> collectionManager.mbCollection.remove(musicBand))
-                    .orElse(false);
+                if (!set.next())
+                {
+                    return "Нет группы с таким id!";
+                }
 
-            return removed ? "Группа удалена!" : "Нет группы с таким id!";
-        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+                    if (set.getInt("userid") == uid) {
+                        DbStuff.exeQueryVoid("DELETE FROM mbCollection WHERE id=" + mbID + ";");
+                        boolean removed = collectionManager.mbCollection.stream()
+                                .filter(musicBand -> musicBand.getId() == mbID)
+                                .findFirst()
+                                .map(musicBand -> collectionManager.mbCollection.remove(musicBand))
+                                .orElse(false);
+
+                        return removed ? "Группа удалена!" : "Нет группы с таким id!";
+                    }
+                    else
+                    {
+                        return "Эта группа вам не принадлежит!";
+                    }
+
+            }
+            catch(SQLException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+
+        catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return "Неверно введен id";
         }
+        return "";
     }
 
 }

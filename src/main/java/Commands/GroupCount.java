@@ -22,7 +22,7 @@ public class GroupCount extends Command {
     /** Сгруппировать элементы коллекции по значению поля genre, вывести количество элементов в каждой группе
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager, int uid) {
         Object TreeMap;
         Map<String, Long> countByGenre = collectionManager.mbCollection.stream()
                 .collect(Collectors.groupingBy(

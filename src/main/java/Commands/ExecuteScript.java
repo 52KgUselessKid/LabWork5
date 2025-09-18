@@ -33,7 +33,7 @@ public class ExecuteScript extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args, Object object) {
+    public String execute(CollectionManager collectionManager, String[] args, Object object, int uid) {
         try {
             scripts = (Map<String, String>) object;
 
@@ -43,7 +43,7 @@ public class ExecuteScript extends Command {
 
             scriptsExeCount.put(scripts.keySet().iterator().next(), scriptsExeCount.get(scripts.keySet().iterator().next()) + 1);
 
-            return getOutput(collectionManager, scripts.get(scripts.keySet().iterator().next()));
+            return getOutput(collectionManager, scripts.get(scripts.keySet().iterator().next()), uid);
         }
         catch (NoSuchElementException e)
         {
@@ -51,7 +51,7 @@ public class ExecuteScript extends Command {
         }
     }
 
-    static String getOutput(CollectionManager collectionManager, String fileContent)
+    static String getOutput(CollectionManager collectionManager, String fileContent, int uid)
     {
         String output = "";
         try {
@@ -84,30 +84,30 @@ public class ExecuteScript extends Command {
                         if (input.strip().split("\\s+")[0].equals("update"))
                         {
                             command = new UpdateFS(xml);
-                            output += command.execute(collectionManager, args1) + "\n";
+                            output += command.execute(collectionManager, args1, uid) + "\n";
                         }
                         else
                         {
                             command = new AddFS(xml);
-                            output += command.execute(collectionManager) + "\n";
+                            output += command.execute(collectionManager, uid) + "\n"; ///fixxx
                         }
                     }
                     else {
                         if (cList.contains(input.strip().split("\\s+")[0])) {
                             command = CommandManager.getCommand(input.strip().split("\\s+")[0]);
                             if (command.isSingle) {
-                                output += command.execute();
+                                output += command.execute(uid);
                             } else if (command.cllOnly) {
-                                output += command.execute(collectionManager) + "\n";
+                                output += command.execute(collectionManager, uid) + "\n";
                             }
                             else if (command.getName().equals("execute")) {
                                 if(scriptsExeCount.get(args1[1]) < maxRecCount) {
                                     scriptsExeCount.put(args1[1], scriptsExeCount.get(args1[1]) + 1);
-                                    output += getOutput(collectionManager, scripts.get(args1[1]));
+                                    output += getOutput(collectionManager, scripts.get(args1[1]), uid);
                                 }
                             }
                             else {
-                                output += command.execute(collectionManager, args1) + "\n";
+                                output += command.execute(collectionManager, args1, uid) + "\n";
                             }
                         }
                         else

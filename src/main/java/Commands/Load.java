@@ -36,9 +36,9 @@ public class Load extends Command {
      * @param args              параметры для команды
      */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
 
-            new Clear().execute(collectionManager);
+            new Clear().execute(collectionManager, uid);
 
             try (ResultSet set = DbStuff.exeQuery("SELECT * FROM mbCollection;")) {
                 while(set.next()){

@@ -17,7 +17,7 @@ public class Exit extends Command {
 
     /** Позволяет пользователю завершить программу */
     @Override
-    public String execute() {
+    public String execute(int uid) {
         Server.logger.info("Клиент отключился о сервера 0_0");
         return "Вы отключились от сервера x_x";
     }

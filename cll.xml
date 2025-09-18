@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MusicBands>
     <MusicBand>
-        <id>1</id>
-        <name>SigmaBoys</name>
-        <coordinates>3_4</coordinates>
-        <creationDate>1744129937309</creationDate>
-        <NumberOfParticipants>12</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>jjj</label>
-    </MusicBand>
-    <MusicBand>
-        <id>2</id>
+        <id>18</id>
         <name>Skibidi</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
@@ -19,7 +10,7 @@
         <label>jjj</label>
     </MusicBand>
     <MusicBand>
-        <id>3</id>
+        <id>19</id>
         <name>ITMO</name>
         <coordinates>3_4</coordinates>
         <creationDate>1744129937309</creationDate>
@@ -28,57 +19,21 @@
         <label>jjj</label>
     </MusicBand>
     <MusicBand>
-        <id>4</id>
-        <name>hoho</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1758130747065</creationDate>
-        <NumberOfParticipants>7</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>null</label>
+        <id>17</id>
+        <name>Scubyyyy</name>
+        <coordinates>5_5</coordinates>
+        <creationDate>1758158483026</creationDate>
+        <NumberOfParticipants>10</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>koko</label>
     </MusicBand>
     <MusicBand>
-        <id>5</id>
-        <name>hoho</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1758131012128</creationDate>
-        <NumberOfParticipants>7</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>null</label>
-    </MusicBand>
-    <MusicBand>
-        <id>6</id>
-        <name>hoho</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1758131227267</creationDate>
-        <NumberOfParticipants>7</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>htt</label>
-    </MusicBand>
-    <MusicBand>
-        <id>7</id>
-        <name>hoho</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1758131309752</creationDate>
-        <NumberOfParticipants>7</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>jgj</label>
-    </MusicBand>
-    <MusicBand>
-        <id>4</id>
-        <name>hoho</name>
-        <coordinates>7_7</coordinates>
-        <creationDate>1758131391751</creationDate>
-        <NumberOfParticipants>7</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>hr</label>
-    </MusicBand>
-    <MusicBand>
-        <id>9</id>
-        <name>hyhy</name>
-        <coordinates>6_6</coordinates>
-        <creationDate>1758131454586</creationDate>
-        <NumberOfParticipants>6</NumberOfParticipants>
-        <genre>JAZZ</genre>
-        <label>null</label>
+        <id>20</id>
+        <name>Zubbyyy</name>
+        <coordinates>5_5</coordinates>
+        <creationDate>1758159292224</creationDate>
+        <NumberOfParticipants>10</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>koko</label>
     </MusicBand>
 </MusicBands>

@@ -25,7 +25,7 @@ public class Save extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         try {
             String filename = args[1];
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {

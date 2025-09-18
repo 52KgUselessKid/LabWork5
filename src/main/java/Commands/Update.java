@@ -2,8 +2,11 @@ package Commands;
 
 import Classes.Command;
 import Classes.MusicBand;
+import DB.DbStuff;
 import Managers.CollectionManager;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,34 +28,62 @@ public class Update extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args, Object musB) {
+    public String execute(CollectionManager collectionManager, String[] args, Object musB, int uid) {
         try {
             int mbID = Integer.parseInt(args[1]);
 
-            boolean exists = collectionManager.mbCollection.stream()
-                    .anyMatch(mb -> mb.getId() == mbID);
+            try {
+                ResultSet set = DbStuff.exeQuery("SELECT userid FROM mbCollection WHERE id=" + mbID + ";");
 
-            if (!exists) {
-                throw new ArrayIndexOutOfBoundsException();
+                if (!set.next()) {
+                    return "Нет группы с таким id!";
+                }
+
+                if (set.getInt("userid") == uid)
+                {
+                    MusicBand mBand = (MusicBand) musB;
+                    DbStuff.exeQueryVoid("UPDATE mbCollection SET name ='" + mBand.getName() +"', coordinate_x =" + mBand.getCoordinates().getX() +
+                            ", coordinate_y =" + mBand.getCoordinates().getY() + ", creationdate='" + mBand.getCDate() + "', " +
+                            "numberofparticipants =" + mBand.getPartsNum() + ", genre ='" + mBand.getGenre() + "', label_ ='" + mBand.getLabel() + "' " +
+                            "WHERE id =" + mbID + ";");
+                    boolean exists = collectionManager.mbCollection.stream()
+                            .anyMatch(mb -> mb.getId() == mbID);
+
+                    if (!exists) {
+                        throw new ArrayIndexOutOfBoundsException();
+                    }
+
+                    List<MusicBand> updatedList = collectionManager.mbCollection.stream()
+                            .map(musicBand -> {
+                                if (musicBand.getId() == mbID) {
+                                    MusicBand mb = (MusicBand) musB;
+                                    return new MusicBand(mbID, mb.getName(), mb.getCoordinates(),
+                                            mb.getPartsNum(), mb.getGenre(), mb.getLabel(), uid);
+                                }
+                                return musicBand;
+                            })
+                            .collect(Collectors.toList());
+
+                    collectionManager.mbCollection = new ArrayDeque<>(updatedList);
+                    return "Обновлено!";
+                }
+                else
+                {
+                    return "Эта группа вам не принадлежит!";
+                }
+
+
+            }
+            catch (SQLException e)
+            {
+                e.printStackTrace();
             }
 
-            List<MusicBand> updatedList = collectionManager.mbCollection.stream()
-                    .map(musicBand -> {
-                        if (musicBand.getId() == mbID) {
-                            MusicBand mb = (MusicBand) musB;
-                            return new MusicBand(mbID, mb.getName(), mb.getCoordinates(),
-                                    mb.getPartsNum(), mb.getGenre(), mb.getLabel(), 9);
-                        }
-                        return musicBand;
-                    })
-                    .collect(Collectors.toList());
-
-            collectionManager.mbCollection = new ArrayDeque<>(updatedList);
-            return "Обновлено!";
 
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return "Неверный id!";
         }
+        return "";
     }
 
 

@@ -22,7 +22,7 @@ public class Show extends Command {
     /** Отображает пользователю все элементы коллекции
      * @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager, int uid) {
         return collectionManager.mbCollection.stream()
                 .sorted(Comparator.comparing(MusicBand::getName))
                 .map(MusicBand::toString)

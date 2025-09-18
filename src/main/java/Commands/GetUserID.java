@@ -22,7 +22,7 @@ public class GetUserID extends Command {
     /** Даёт пользователю информацию о коллекции
      @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         try {
             ResultSet set = DbStuff.exeQuery("SELECT id FROM users WHERE name = '" + args[1] + "';");
 

@@ -16,7 +16,7 @@ public class Help extends Command {
 
     /** Выдает пользователю спраку по командам*/
     @Override
-    public String execute() {
+    public String execute(int uid) {
         String output = "";
 
         String[] cNames = {"add", "clear", "execute", "exit", "filter", "group_count", "head", "help", "info",

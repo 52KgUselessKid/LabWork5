@@ -4,6 +4,7 @@ import Classes.Command;
 import Classes.MusicBand;
 import DB.DbStuff;
 import Managers.CollectionManager;
+import Net.Server;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class CheckUser extends Command {
     /** Даёт пользователю информацию о коллекции
      @param collectionManager collectionManager содержащий коллекцию */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         try {
             ResultSet set = DbStuff.exeQuery("SELECT * FROM users WHERE name = '" + args[1] + "';");
 

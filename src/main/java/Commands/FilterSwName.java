@@ -24,7 +24,7 @@ public class FilterSwName extends Command {
      * @param collectionManager collectionManager содержащий коллекцию
      * @param args параметры для команды */
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, String[] args, int uid) {
         return collectionManager.mbCollection.stream()
                 .filter(musicBand -> musicBand.getName() != null)
                 .filter(musicBand -> musicBand.getName().startsWith(args[1]))

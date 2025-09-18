@@ -1,8 +1,17 @@
 help
 show
-update 1
+update 17
 <MusicBand>
         <name>Scubyyyy</name>
+        <x>5</x>
+        <y>5</y>
+        <NumberOfParticipants>10</NumberOfParticipants>
+        <genre>MATH_ROCK</genre>
+        <label>koko</label>
+</MusicBand>
+add
+<MusicBand>
+        <name>Zubbyyy</name>
         <x>5</x>
         <y>5</y>
         <NumberOfParticipants>10</NumberOfParticipants>

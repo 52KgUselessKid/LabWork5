@@ -160,7 +160,7 @@ public class MusicBand implements Comparable<MusicBand>, Serializable {
                 ", numberOfParticipants=" + numberOfParticipants +
                 ", genre=" + genre +
                 ", label=" + label +
-                "}\n";
+                ", user_id=" + user_id + "\n";
     }
 
     /** Сравнивает объекты групп между собой

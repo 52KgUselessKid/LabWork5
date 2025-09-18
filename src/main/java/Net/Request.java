@@ -12,6 +12,7 @@ public class Request implements Serializable {
     Command command;
     String[] args;
     Object input;
+    UserData userData;
 
     public Request(String content)
     {
@@ -25,7 +26,20 @@ public class Request implements Serializable {
         }
     }
 
-    public Request(String content, Object object)
+    public Request(String content, UserData userData)
+    {
+        args = content.strip().split("\\s+");
+        try {
+            command = getCommand(args[0].strip());
+        }
+        catch (InvalidCommandException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        this.userData = userData;
+    }
+
+    public Request(String content, Object object, UserData userData)
     {
         args = content.strip().split("\\s+");
         try {
@@ -36,6 +50,7 @@ public class Request implements Serializable {
             System.out.println(e.getMessage());
         }
         input = object;
+        this.userData = userData;
     }
 
     public Command getReqCommand()
